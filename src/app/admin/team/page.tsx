@@ -73,18 +73,16 @@ export default function AdminTeamPage() {
           />
           <input
             className="admin-input"
-            placeholder="직함"
+            placeholder="직책 (선택)"
             value={form.role}
             onChange={(e) => setForm({ ...form, role: e.target.value })}
-            required
           />
         </div>
         <textarea
           className="admin-input min-h-24"
-          placeholder="소개"
+          placeholder="설명 (선택)"
           value={form.bio}
           onChange={(e) => setForm({ ...form, bio: e.target.value })}
-          required
         />
         <ImageUploadField
           label="사진 (선택)"
@@ -151,12 +149,15 @@ export default function AdminTeamPage() {
               )}
               <div>
                 <p className="font-medium text-ink">
-                  {item.name} · {item.role}
+                  {item.name}
+                  {item.role.trim() ? ` · ${item.role}` : ""}
                 </p>
                 <p className="text-sm text-muted">
                   순서 {item.order} · {item.published ? "공개" : "비공개"}
                 </p>
-                <p className="mt-1 text-sm text-muted">{item.bio}</p>
+                {item.bio.trim() ? (
+                  <p className="mt-1 text-sm text-muted">{item.bio}</p>
+                ) : null}
               </div>
             </div>
             <div className="flex gap-2">

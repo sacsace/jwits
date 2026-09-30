@@ -96,13 +96,17 @@ export default async function AboutPage({
                   <div className="min-w-0 pt-0.5">
                     <p className="font-display text-[15px] font-semibold leading-tight text-ink">
                       {member.name}
-                      <span className="ml-2 text-[12px] font-medium text-brand">
-                        {member.role}
-                      </span>
+                      {member.role.trim() ? (
+                        <span className="ml-2 text-[12px] font-medium text-brand">
+                          {member.role}
+                        </span>
+                      ) : null}
                     </p>
-                    <p className="mt-1.5 text-[13px] leading-6 text-muted">
-                      {member.bio}
-                    </p>
+                    {member.bio.trim() ? (
+                      <p className="mt-1.5 text-[13px] leading-6 text-muted">
+                        {member.bio}
+                      </p>
+                    ) : null}
                   </div>
                 </li>
               ))}
