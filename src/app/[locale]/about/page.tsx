@@ -18,6 +18,9 @@ export default async function AboutPage({
   const team = [...data.team]
     .filter((m) => m.published)
     .sort((a, b) => a.order - b.order);
+  const clients = [...data.clients]
+    .filter((c) => c.published)
+    .sort((a, b) => a.order - b.order);
 
   return (
     <div className="bg-paper">
@@ -108,6 +111,34 @@ export default async function AboutPage({
                       </p>
                     ) : null}
                   </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      )}
+
+      {clients.length > 0 && (
+        <section className="bg-paper px-5 py-14">
+          <div className="mx-auto max-w-6xl">
+            <SectionHeading
+              title={dict.home.clientsTitle}
+              description={dict.home.clientsDesc}
+            />
+            <ul className="grid gap-x-8 gap-y-2 sm:grid-cols-2">
+              {clients.map((client) => (
+                <li
+                  key={client.id}
+                  className="flex items-baseline justify-between gap-3 border-b border-line py-2.5"
+                >
+                  <span className="text-[13px] font-medium text-ink">
+                    {client.name}
+                  </span>
+                  {client.location.trim() ? (
+                    <span className="shrink-0 text-[11px] text-muted">
+                      {client.location}
+                    </span>
+                  ) : null}
                 </li>
               ))}
             </ul>

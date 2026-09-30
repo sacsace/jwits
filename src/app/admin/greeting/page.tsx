@@ -40,12 +40,14 @@ export default function AdminGreetingPage() {
 
   return (
     <AdminShell>
-      <h1 className="font-display text-3xl font-bold text-ink">대표 인사말</h1>
-      <p className="mt-2 text-muted">회사소개 페이지에 노출되는 대표 인사말을 관리합니다.</p>
+      <h1 className="font-display text-xl font-bold text-ink">대표 인사말</h1>
+      <p className="mt-1 text-[13px] text-muted">
+        회사소개 페이지에 노출되는 대표 인사말을 관리합니다.
+      </p>
 
-      <form onSubmit={onSubmit} className="mt-8 max-w-2xl space-y-4 admin-panel p-5">
-        <label className="block text-sm">
-          <span className="mb-1.5 block text-muted">섹션 제목</span>
+      <form onSubmit={onSubmit} className="mt-5 w-full space-y-3 admin-panel p-4">
+        <label className="block text-[13px]">
+          <span className="mb-1 block text-muted">섹션 제목</span>
           <input
             className="admin-input"
             value={form.title}
@@ -53,9 +55,9 @@ export default function AdminGreetingPage() {
             required
           />
         </label>
-        <div className="grid gap-4 md:grid-cols-2">
-          <label className="block text-sm">
-            <span className="mb-1.5 block text-muted">대표 이름</span>
+        <div className="grid gap-3 md:grid-cols-2">
+          <label className="block text-[13px]">
+            <span className="mb-1 block text-muted">대표 이름</span>
             <input
               className="admin-input"
               value={form.name}
@@ -63,8 +65,8 @@ export default function AdminGreetingPage() {
               required
             />
           </label>
-          <label className="block text-sm">
-            <span className="mb-1.5 block text-muted">직함</span>
+          <label className="block text-[13px]">
+            <span className="mb-1 block text-muted">직함</span>
             <input
               className="admin-input"
               value={form.role}
@@ -73,8 +75,8 @@ export default function AdminGreetingPage() {
             />
           </label>
         </div>
-        <label className="block text-sm">
-          <span className="mb-1.5 block text-muted">인사말</span>
+        <label className="block text-[13px]">
+          <span className="mb-1 block text-muted">인사말</span>
           <textarea
             className="admin-input min-h-40"
             value={form.message}
@@ -87,7 +89,7 @@ export default function AdminGreetingPage() {
           value={form.imageUrl}
           onChange={(imageUrl) => setForm({ ...form, imageUrl })}
         />
-        <label className="flex items-center gap-2 text-sm text-ink">
+        <label className="flex items-center gap-2 text-[13px] text-ink">
           <input
             type="checkbox"
             checked={form.published}
@@ -95,7 +97,7 @@ export default function AdminGreetingPage() {
           />
           공개
         </label>
-        {message && <p className="text-sm text-emerald-700">{message}</p>}
+        {message && <p className="text-[13px] text-emerald-700">{message}</p>}
         <button type="submit" className="admin-btn" disabled={saving}>
           {saving ? "저장 중..." : "저장"}
         </button>

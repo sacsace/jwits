@@ -20,12 +20,12 @@ export default async function HomePage({
   const base = `/${locale}`;
 
   const featured = data.projects
-    .filter((p) => p.featured)
-    .slice(0, 3)
-    .map((p) => ({
-      ...p,
-      ...(dict.projects[p.id] ?? {}),
-    }));
+    .filter((p) => p.featured && p.published)
+    .slice(0, 3);
+
+  const clients = [...data.clients]
+    .filter((c) => c.published)
+    .sort((a, b) => a.order - b.order);
 
   const latestNews = data.news
     .filter((n) => n.published)
@@ -103,21 +103,44 @@ export default async function HomePage({
             title={dict.home.clientsTitle}
             description={dict.home.clientsDesc}
           />
-          <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {dict.clients.map((client) => (
-              <li
-                key={client.name}
-                className="border border-line bg-surface px-5 py-6"
-              >
-                <p className="font-display text-xl font-semibold text-ink">
-                  {client.name}
-                </p>
-                <p className="mt-2 text-[13px] leading-6 text-muted">
-                  {client.note}
-                </p>
-              </li>
-            ))}
-          </ul>
+          {clients.length > 0 ? (
+            <ul className="grid gap-x-8 gap-y-3 sm:grid-cols-2">
+              {clients.map((client) => (
+                <li
+                  key={client.id}
+                  className="flex items-center gap-3 border-b border-line py-3"
+                >
+                  {client.logoUrl ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={client.logoUrl}
+                      alt=""
+                      className="h-9 w-9 shrink-0 object-contain"
+                    />
+                  ) : (
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand/10 text-[11px] font-semibold text-brand">
+                      {client.name.slice(0, 1)}
+                    </span>
+                  )}
+                  <div className="min-w-0">
+                    <p className="truncate text-[13px] font-medium text-ink">
+                      {client.name}
+                    </p>
+                    {(client.location.trim() || client.note.trim()) && (
+                      <p className="mt-0.5 truncate text-[11px] text-muted">
+                        {[client.location, client.note]
+                          .map((v) => v.trim())
+                          .filter(Boolean)
+                          .join(" · ")}
+                      </p>
+                    )}
+                  </div>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="text-sm text-muted">등록된 고객사가 없습니다.</p>
+          )}
         </div>
       </section>
 
@@ -171,21 +194,23 @@ export default async function HomePage({
             {featured.map((project) => (
               <li
                 key={project.id}
-                className="grid gap-2 border-b border-line py-6 md:grid-cols-[140px_1fr_120px] md:items-baseline md:gap-8"
+                className="grid gap-2 border-b border-line py-5 md:grid-cols-[140px_1fr_120px] md:items-baseline md:gap-8"
               >
-                <p className="text-sm text-muted">{project.client}</p>
+                <p className="text-sm text-muted">{project.relatedAuto}</p>
                 <div>
-                  <p className="font-display text-lg font-semibold text-ink">
-                    {project.title}
+                  <p className="font-display text-[15px] font-semibold text-ink">
+                    {project.projectName}
                   </p>
-                  <p className="mt-2 text-[14px] leading-7 text-muted">
-                    {project.description}
+                  <p className="mt-1.5 text-[13px] leading-6 text-muted">
+                    {[project.place, project.manufacturing, project.workType]
+                      .filter((v) => v.trim())
+                      .join(" · ")}
                   </p>
                 </div>
                 <p className="text-sm text-muted md:text-right">
                   {project.year}
                   <span className="mx-1.5 text-line">·</span>
-                  {project.category}
+                  {project.month}
                 </p>
               </li>
             ))}

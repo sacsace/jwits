@@ -160,7 +160,9 @@ a {
   background: #ffffff;
   color: #1a1d24;
   border-radius: 8px;
-  padding: 0.7rem 0.9rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.8125rem;
+  line-height: 1.4;
   outline: none;
 }
 
@@ -173,10 +175,11 @@ a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.4rem;
+  gap: 0.35rem;
   border: none;
   border-radius: 8px;
-  padding: 0.7rem 1.1rem;
+  padding: 0.45rem 0.85rem;
+  font-size: 0.8125rem;
   font-weight: 600;
   cursor: pointer;
   background: #1f3554;

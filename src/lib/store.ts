@@ -2,12 +2,22 @@ import { promises as fs } from "fs";
 import path from "path";
 import { defaultData } from "./default-data";
 import { getDataDir } from "./paths";
-import type { AppData } from "./types";
+import type { AppData, ProjectItem } from "./types";
 
 const dataDir = getDataDir();
 const dataFile = path.join(dataDir, "store.json");
 
+function isNewProjectSchema(projects: unknown): projects is ProjectItem[] {
+  if (!Array.isArray(projects) || projects.length === 0) return false;
+  const first = projects[0] as Record<string, unknown>;
+  return typeof first.projectName === "string";
+}
+
 function normalizeStore(raw: Partial<AppData>): AppData {
+  const projects = isNewProjectSchema(raw.projects)
+    ? raw.projects
+    : defaultData.projects;
+
   return {
     ...defaultData,
     ...raw,
@@ -33,8 +43,9 @@ function normalizeStore(raw: Partial<AppData>): AppData {
       ...(raw.greeting ?? {}),
     },
     team: raw.team ?? defaultData.team,
+    clients: raw.clients ?? defaultData.clients,
     news: raw.news ?? defaultData.news,
-    projects: raw.projects ?? defaultData.projects,
+    projects,
     inquiries: raw.inquiries ?? defaultData.inquiries,
   };
 }
@@ -54,7 +65,12 @@ export async function readStore(): Promise<AppData> {
   const parsed = JSON.parse(raw) as Partial<AppData>;
   const normalized = normalizeStore(parsed);
 
-  if (!parsed.greeting || !parsed.team) {
+  if (
+    !parsed.greeting ||
+    !parsed.team ||
+    !parsed.clients ||
+    !isNewProjectSchema(parsed.projects)
+  ) {
     await writeStore(normalized);
   }
 

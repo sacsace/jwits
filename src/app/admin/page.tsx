@@ -21,6 +21,12 @@ export default async function AdminDashboardPage() {
       hint: "게시글 관리",
     },
     {
+      label: "고객사",
+      value: data.clients.length,
+      href: "/admin/clients",
+      hint: "주요 고객사",
+    },
+    {
       label: "실적",
       value: data.projects.length,
       href: "/admin/projects",

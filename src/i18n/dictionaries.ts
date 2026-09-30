@@ -139,7 +139,7 @@ const ko: Dictionary = {
     founded: "설립",
     clientsTitle: "주요 고객",
     clientsDesc:
-      "완성차·부품 파트너와 함께 설계부터 검증까지 실무 과제를 수행합니다.",
+      "인도 완성차·부품 파트너와 함께 설계부터 검증까지 실무 과제를 수행합니다.",
     servicesTitle: "사업 영역",
     servicesDesc:
       "설계부터 검증까지, 개발 과정에서 필요한 엔지니어링을 이어서 지원합니다.",
@@ -378,7 +378,7 @@ const en: Dictionary = {
     founded: "Founded",
     clientsTitle: "Key clients",
     clientsDesc:
-      "We work with OEM and parts partners from design through validation.",
+      "We work with OEM and parts partners across India from design through validation.",
     servicesTitle: "Services",
     servicesDesc:
       "From design through validation, we support the engineering needed across development.",

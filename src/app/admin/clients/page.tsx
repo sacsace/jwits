@@ -3,24 +3,24 @@
 import { FormEvent, useEffect, useState } from "react";
 import { AdminShell } from "@/components/admin/AdminShell";
 import { ImageUploadField } from "@/components/admin/ImageUploadField";
-import type { TeamMember } from "@/lib/types";
+import type { ClientCompany } from "@/lib/types";
 
-const empty: Omit<TeamMember, "id"> = {
+const empty: Omit<ClientCompany, "id"> = {
   name: "",
-  role: "",
-  bio: "",
-  imageUrl: "",
+  location: "",
+  note: "",
+  logoUrl: "",
   order: 1,
   published: true,
 };
 
-export default function AdminTeamPage() {
-  const [items, setItems] = useState<TeamMember[]>([]);
+export default function AdminClientsPage() {
+  const [items, setItems] = useState<ClientCompany[]>([]);
   const [form, setForm] = useState(empty);
   const [editingId, setEditingId] = useState<string | null>(null);
 
   async function load() {
-    const res = await fetch("/api/team?all=1");
+    const res = await fetch("/api/clients?all=1");
     setItems(await res.json());
   }
 
@@ -31,13 +31,13 @@ export default function AdminTeamPage() {
   async function onSubmit(e: FormEvent) {
     e.preventDefault();
     if (editingId) {
-      await fetch("/api/team", {
+      await fetch("/api/clients", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...form, id: editingId }),
       });
     } else {
-      await fetch("/api/team", {
+      await fetch("/api/clients", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
@@ -50,48 +50,33 @@ export default function AdminTeamPage() {
 
   async function remove(id: string) {
     if (!confirm("삭제하시겠습니까?")) return;
-    await fetch(`/api/team?id=${id}`, { method: "DELETE" });
+    await fetch(`/api/clients?id=${id}`, { method: "DELETE" });
     await load();
   }
 
   return (
     <AdminShell>
-      <h1 className="font-display text-xl font-bold text-ink">팀원 관리</h1>
-      <p className="mt-1 text-[13px] text-muted">
-        회사소개 페이지에 노출되는 팀원을 관리합니다.
-      </p>
+      <h1 className="font-display text-3xl font-bold text-ink">주요 고객사</h1>
+      <p className="mt-2 text-muted">홈·회사소개에 노출되는 주요 고객사를 관리합니다.</p>
 
-      <form onSubmit={onSubmit} className="mt-5 space-y-2.5 admin-panel p-4">
-        <h2 className="text-[15px] font-semibold text-ink">
-          {editingId ? "팀원 수정" : "팀원 등록"}
+      <form onSubmit={onSubmit} className="mt-8 space-y-3 admin-panel p-5">
+        <h2 className="font-display text-xl text-ink">
+          {editingId ? "고객사 수정" : "고객사 등록"}
         </h2>
-        <div className="grid gap-2.5 md:grid-cols-2">
+        <input
+          className="admin-input"
+          placeholder="회사명"
+          value={form.name}
+          onChange={(e) => setForm({ ...form, name: e.target.value })}
+          required
+        />
+        <div className="grid gap-3 md:grid-cols-2">
           <input
             className="admin-input"
-            placeholder="이름"
-            value={form.name}
-            onChange={(e) => setForm({ ...form, name: e.target.value })}
-            required
+            placeholder="지역 (선택)"
+            value={form.location}
+            onChange={(e) => setForm({ ...form, location: e.target.value })}
           />
-          <input
-            className="admin-input"
-            placeholder="직책 (선택)"
-            value={form.role}
-            onChange={(e) => setForm({ ...form, role: e.target.value })}
-          />
-        </div>
-        <textarea
-          className="admin-input min-h-20"
-          placeholder="설명 (선택)"
-          value={form.bio}
-          onChange={(e) => setForm({ ...form, bio: e.target.value })}
-        />
-        <ImageUploadField
-          label="사진 (선택)"
-          value={form.imageUrl}
-          onChange={(imageUrl) => setForm({ ...form, imageUrl })}
-        />
-        <div className="grid gap-2.5 md:grid-cols-2">
           <input
             type="number"
             className="admin-input"
@@ -103,8 +88,19 @@ export default function AdminTeamPage() {
             min={1}
           />
         </div>
-        <div className="flex flex-wrap items-center gap-3">
-          <label className="flex items-center gap-2 text-[13px] text-ink">
+        <textarea
+          className="admin-input min-h-20"
+          placeholder="설명 (선택)"
+          value={form.note}
+          onChange={(e) => setForm({ ...form, note: e.target.value })}
+        />
+        <ImageUploadField
+          label="로고 (선택)"
+          value={form.logoUrl}
+          onChange={(logoUrl) => setForm({ ...form, logoUrl })}
+        />
+        <div className="flex flex-wrap items-center gap-4">
+          <label className="flex items-center gap-2 text-sm text-ink">
             <input
               type="checkbox"
               checked={form.published}
@@ -130,47 +126,45 @@ export default function AdminTeamPage() {
         </div>
       </form>
 
-      <ul className="mt-5 space-y-2">
+      <ul className="mt-8 space-y-2">
         {items.map((item) => (
           <li
             key={item.id}
             className="flex flex-col gap-2 admin-panel px-3.5 py-2.5 md:flex-row md:items-center md:justify-between"
           >
             <div className="flex min-w-0 items-center gap-2.5">
-              {item.imageUrl ? (
+              {item.logoUrl ? (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img
-                  src={item.imageUrl}
+                  src={item.logoUrl}
                   alt=""
-                  className="h-9 w-9 shrink-0 rounded-full object-cover"
+                  className="h-8 w-8 shrink-0 rounded object-contain bg-surface"
                 />
-              ) : (
-                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-surface text-[12px] font-semibold text-brand">
-                  {item.name.slice(0, 1)}
-                </div>
-              )}
+              ) : null}
               <div className="min-w-0">
                 <p className="truncate text-[13px] font-medium leading-snug text-ink">
                   {item.name}
-                  {item.role.trim() ? ` · ${item.role}` : ""}
                 </p>
                 <p className="mt-0.5 text-[11px] leading-snug text-muted">
-                  순서 {item.order} · {item.published ? "공개" : "비공개"}
-                  {item.bio.trim() ? ` · ${item.bio}` : ""}
+                  순서 {item.order}
+                  {item.location.trim() ? ` · ${item.location}` : ""}
+                  {" · "}
+                  {item.published ? "공개" : "비공개"}
+                  {item.note.trim() ? ` · ${item.note}` : ""}
                 </p>
               </div>
             </div>
             <div className="flex shrink-0 gap-2">
               <button
                 type="button"
-                className="admin-btn admin-btn-ghost-light"
+                className="admin-btn admin-btn-ghost-light !px-2.5 !py-1.5 !text-xs"
                 onClick={() => {
                   setEditingId(item.id);
                   setForm({
                     name: item.name,
-                    role: item.role,
-                    bio: item.bio,
-                    imageUrl: item.imageUrl,
+                    location: item.location,
+                    note: item.note,
+                    logoUrl: item.logoUrl,
                     order: item.order,
                     published: item.published,
                   });
@@ -180,7 +174,7 @@ export default function AdminTeamPage() {
               </button>
               <button
                 type="button"
-                className="admin-btn admin-btn-danger"
+                className="admin-btn admin-btn-danger !px-2.5 !py-1.5 !text-xs"
                 onClick={() => remove(item.id)}
               >
                 삭제

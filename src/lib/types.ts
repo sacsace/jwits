@@ -9,11 +9,16 @@ export type NewsItem = {
 
 export type ProjectItem = {
   id: string;
-  title: string;
-  client: string;
-  category: string;
-  description: string;
   year: string;
+  month: string;
+  place: string;
+  relatedAuto: string;
+  customer: string;
+  workType: string;
+  manufacturing: string;
+  workDetail: string;
+  projectName: string;
+  published: boolean;
   featured: boolean;
 };
 
@@ -43,6 +48,16 @@ export type TeamMember = {
   role: string;
   bio: string;
   imageUrl: string;
+  order: number;
+  published: boolean;
+};
+
+export type ClientCompany = {
+  id: string;
+  name: string;
+  location: string;
+  note: string;
+  logoUrl: string;
   order: number;
   published: boolean;
 };
@@ -82,6 +97,7 @@ export type AppData = {
   content: SiteContent;
   greeting: GreetingContent;
   team: TeamMember[];
+  clients: ClientCompany[];
   news: NewsItem[];
   projects: ProjectItem[];
   inquiries: InquiryItem[];
