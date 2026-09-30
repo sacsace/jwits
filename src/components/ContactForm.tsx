@@ -57,21 +57,9 @@ export function ContactForm({ dict }: { dict: Dictionary }) {
           </p>
           <p>
             <span className="mb-1 block font-semibold text-ink">
-              {dict.contactPage.phone}
-            </span>
-            {dict.company.phone}
-          </p>
-          <p>
-            <span className="mb-1 block font-semibold text-ink">
               {dict.contactPage.email}
             </span>
             {dict.company.email}
-          </p>
-          <p>
-            <span className="mb-1 block font-semibold text-ink">
-              {dict.contactPage.fax}
-            </span>
-            {dict.company.fax}
           </p>
         </div>
       </div>

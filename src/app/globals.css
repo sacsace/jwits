@@ -137,22 +137,36 @@ a {
 
 .admin-shell {
   min-height: 100vh;
-  background: #12161d;
-  color: #e8eef2;
+  height: 100vh;
+  overflow: hidden;
+  background: #ffffff;
+  color: #1a1d24;
+}
+
+.admin-sidebar {
+  background: #1f3554;
+  color: #ffffff;
+}
+
+.admin-panel {
+  border: 1px solid #e5e7eb;
+  background: #ffffff;
+  border-radius: 12px;
 }
 
 .admin-input {
   width: 100%;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  background: rgba(255, 255, 255, 0.04);
-  color: #e8eef2;
-  border-radius: 6px;
+  border: 1px solid #d5d9e0;
+  background: #ffffff;
+  color: #1a1d24;
+  border-radius: 8px;
   padding: 0.7rem 0.9rem;
   outline: none;
 }
 
 .admin-input:focus {
-  border-color: #7f97b8;
+  border-color: #1f3554;
+  box-shadow: 0 0 0 3px rgba(31, 53, 84, 0.12);
 }
 
 .admin-btn {
@@ -161,24 +175,31 @@ a {
   justify-content: center;
   gap: 0.4rem;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
   padding: 0.7rem 1.1rem;
   font-weight: 600;
   cursor: pointer;
-  background: var(--brand);
+  background: #1f3554;
   color: white;
 }
 
 .admin-btn:hover {
-  background: var(--brand-hover);
+  background: #16273d;
 }
 
 .admin-btn-ghost {
   background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  color: #e8eef2;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  color: #ffffff;
+}
+
+.admin-btn-ghost-light {
+  background: transparent;
+  border: 1px solid #d5d9e0;
+  color: #1a1d24;
 }
 
 .admin-btn-danger {
-  background: #8f2d2d;
+  background: #b91c1c;
+  color: #ffffff;
 }

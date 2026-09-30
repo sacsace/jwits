@@ -1,11 +1,14 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 
 const nav = [
   { href: "/admin", label: "대시보드" },
   { href: "/admin/content", label: "사이트 콘텐츠" },
+  { href: "/admin/greeting", label: "대표 인사말" },
+  { href: "/admin/team", label: "팀원" },
   { href: "/admin/news", label: "뉴스" },
   { href: "/admin/projects", label: "실적" },
   { href: "/admin/inquiries", label: "문의" },
@@ -27,19 +30,28 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
   }
 
   return (
-    <div className="admin-shell">
-      <div className="mx-auto flex min-h-screen max-w-7xl">
-        <aside className="hidden w-60 shrink-0 border-r border-white/10 p-5 md:block">
-          <Link href="/admin" className="inline-flex items-center gap-2">
-            <span className="inline-flex rounded-full bg-white p-0.5">
-              <img src="/logo.png" alt="" width={24} height={24} />
-            </span>
-            <span className="font-display text-sm font-bold leading-tight">
-              JW Industrial Tech Services
-            </span>
-          </Link>
-          <p className="mt-1 text-xs text-white/45">Admin</p>
-          <nav className="mt-8 flex flex-col gap-2">
+    <div className="admin-shell h-screen overflow-hidden">
+      <div className="mx-auto flex h-full max-w-[96rem]">
+        <aside className="admin-sidebar hidden h-full w-64 shrink-0 flex-col p-5 md:flex">
+          <div className="shrink-0">
+            <Link href="/admin" className="inline-flex items-center gap-2.5">
+              <span className="relative h-9 w-9 shrink-0 overflow-hidden rounded-full bg-white">
+                <Image
+                  src="/logo.png"
+                  alt=""
+                  fill
+                  className="object-cover"
+                  sizes="36px"
+                />
+              </span>
+              <span className="font-display text-sm font-bold leading-tight text-white">
+                JW Industrial Tech Services
+              </span>
+            </Link>
+            <p className="mt-1 text-xs text-white/55">Admin</p>
+          </div>
+
+          <nav className="mt-8 flex flex-1 flex-col gap-1 overflow-y-auto">
             {nav.map((item) => {
               const active =
                 item.href === "/admin"
@@ -49,10 +61,10 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`rounded-lg px-3 py-2 text-sm transition ${
+                  className={`rounded-lg px-3 py-2.5 text-sm transition ${
                     active
-                      ? "bg-white/10 text-white"
-                      : "text-white/70 hover:bg-white/5 hover:text-white"
+                      ? "bg-white font-semibold text-[#1f3554]"
+                      : "text-white/75 hover:bg-white/10 hover:text-white"
                   }`}
                 >
                   {item.label}
@@ -60,8 +72,12 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
               );
             })}
           </nav>
-          <div className="mt-10 space-y-2">
-            <Link href="/" className="block text-sm text-white/50 hover:text-white">
+
+          <div className="mt-6 shrink-0 space-y-2 border-t border-white/15 pt-5">
+            <Link
+              href="/ko"
+              className="block text-sm text-white/55 hover:text-white"
+            >
               ← 사이트 보기
             </Link>
             <button
@@ -73,26 +89,32 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
             </button>
           </div>
         </aside>
-        <div className="flex-1 p-5 md:p-8">
-          <div className="mb-6 flex flex-wrap gap-2 md:hidden">
-            {nav.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="rounded-full border border-white/15 px-3 py-1 text-xs"
+
+        <div className="flex min-h-0 flex-1 flex-col bg-white">
+          <div className="shrink-0 border-b border-line px-5 py-3 md:hidden">
+            <div className="flex flex-wrap gap-2">
+              {nav.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="rounded-full border border-line px-3 py-1 text-xs text-ink"
+                >
+                  {item.label}
+                </Link>
+              ))}
+              <button
+                type="button"
+                onClick={logout}
+                className="rounded-full border border-line px-3 py-1 text-xs text-ink"
               >
-                {item.label}
-              </Link>
-            ))}
-            <button
-              type="button"
-              onClick={logout}
-              className="rounded-full border border-white/15 px-3 py-1 text-xs"
-            >
-              로그아웃
-            </button>
+                로그아웃
+              </button>
+            </div>
           </div>
-          {children}
+
+          <div className="min-h-0 flex-1 overflow-y-auto p-5 md:p-8">
+            {children}
+          </div>
         </div>
       </div>
     </div>

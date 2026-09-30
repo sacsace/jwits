@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 
 export default function AdminLoginPage() {
   return (
-    <div className="admin-shell flex min-h-screen items-center justify-center px-5">
+    <div className="flex min-h-screen items-center justify-center bg-[#f3f4f6] px-5">
       <LoginForm />
     </div>
   );

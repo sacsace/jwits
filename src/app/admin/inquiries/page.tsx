@@ -33,27 +33,27 @@ export default function AdminInquiriesPage() {
 
   return (
     <AdminShell>
-      <h1 className="font-display text-3xl font-bold">문의 관리</h1>
-      <p className="mt-2 text-white/60">사이트 문의 폼으로 접수된 내용을 확인합니다.</p>
+      <h1 className="font-display text-3xl font-bold text-ink">문의 관리</h1>
+      <p className="mt-2 text-muted">사이트 문의 폼으로 접수된 내용을 확인합니다.</p>
 
       <div className="mt-8 space-y-4">
         {items.length === 0 && (
-          <p className="text-white/50">접수된 문의가 없습니다.</p>
+          <p className="text-muted">접수된 문의가 없습니다.</p>
         )}
         {items.map((item) => (
           <article
             key={item.id}
-            className="rounded-xl border border-white/10 bg-white/5 p-5"
+            className="admin-panel p-5"
           >
             <div className="flex flex-wrap items-start justify-between gap-3">
               <div>
                 <h2 className="font-display text-xl font-semibold">{item.name}</h2>
-                <p className="mt-1 text-sm text-white/50">
+                <p className="mt-1 text-sm text-muted">
                   {item.company && `${item.company} · `}
                   {item.email}
                   {item.phone && ` · ${item.phone}`}
                 </p>
-                <p className="mt-1 text-xs text-white/35">
+                <p className="mt-1 text-xs text-muted">
                   {new Date(item.createdAt).toLocaleString("ko-KR")}
                 </p>
               </div>
@@ -69,7 +69,7 @@ export default function AdminInquiriesPage() {
                 <option value="replied">replied</option>
               </select>
             </div>
-            <p className="mt-4 whitespace-pre-wrap text-sm leading-relaxed text-white/80">
+            <p className="mt-4 whitespace-pre-wrap text-sm leading-relaxed text-ink-soft">
               {item.message}
             </p>
             <button

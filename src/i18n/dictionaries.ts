@@ -40,6 +40,9 @@ export type Dictionary = {
     visionBody: string;
     strengthsTitle: string;
     strengthsDesc: string;
+    greetingTitle: string;
+    teamTitle: string;
+    teamDesc: string;
     profileTitle: string;
     labels: {
       company: string;
@@ -159,6 +162,9 @@ const ko: Dictionary = {
       "모빌리티 전환 시대에 필요한 차세대 설계·해석·시험 플랫폼을 선도하는 엔지니어링 기업이 됩니다.",
     strengthsTitle: "우리의 강점",
     strengthsDesc: "기아자동차 프로젝트에서 쌓은 실무 기준이 회사의 기본입니다.",
+    greetingTitle: "대표 인사말",
+    teamTitle: "팀원 소개",
+    teamDesc: "JW Industrial Tech Services를 이끄는 사람들입니다.",
     profileTitle: "회사 정보",
     labels: {
       company: "회사명",
@@ -396,6 +402,9 @@ const en: Dictionary = {
     strengthsTitle: "Our strengths",
     strengthsDesc:
       "Practical standards built through Kia Motors projects form the foundation of our work.",
+    greetingTitle: "Message from the CEO",
+    teamTitle: "Our team",
+    teamDesc: "The people behind JW Industrial Tech Services.",
     profileTitle: "Company profile",
     labels: {
       company: "Company",
@@ -629,6 +638,9 @@ const zh: Dictionary = {
     visionBody: "成为引领出行转型所需的新一代设计、解析与试验平台的工程企业。",
     strengthsTitle: "我们的优势",
     strengthsDesc: "在起亚汽车项目中积累的实务标准，是公司工作的基础。",
+    greetingTitle: "代表致辞",
+    teamTitle: "团队介绍",
+    teamDesc: "推动 JW Industrial Tech Services 的团队成员。",
     profileTitle: "公司信息",
     labels: {
       company: "公司名称",
@@ -846,6 +858,9 @@ const ja: Dictionary = {
       "モビリティ転換に必要な次世代の設計・解析・試験プラットフォームを先導する企業を目指します。",
     strengthsTitle: "私たちの強み",
     strengthsDesc: "起亜自動車プロジェクトで培った実務基準が、私たちの基盤です。",
+    greetingTitle: "代表挨拶",
+    teamTitle: "チーム紹介",
+    teamDesc: "JW Industrial Tech Services を支えるメンバーです。",
     profileTitle: "会社情報",
     labels: {
       company: "会社名",

@@ -36,9 +36,10 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# local runtime data
+# local runtime data (persists on Railway volume at /app/data)
 /data/store.json
 /data/admin.json
+/data/uploads/
 
 # source media (canonical copies live in /public)
 /img/

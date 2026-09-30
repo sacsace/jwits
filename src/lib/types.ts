@@ -28,6 +28,25 @@ export type InquiryItem = {
   status: "new" | "read" | "replied";
 };
 
+export type GreetingContent = {
+  title: string;
+  name: string;
+  role: string;
+  message: string;
+  imageUrl: string;
+  published: boolean;
+};
+
+export type TeamMember = {
+  id: string;
+  name: string;
+  role: string;
+  bio: string;
+  imageUrl: string;
+  order: number;
+  published: boolean;
+};
+
 export type SiteContent = {
   company: {
     name: string;
@@ -61,6 +80,8 @@ export type SiteContent = {
 
 export type AppData = {
   content: SiteContent;
+  greeting: GreetingContent;
+  team: TeamMember[];
   news: NewsItem[];
   projects: ProjectItem[];
   inquiries: InquiryItem[];

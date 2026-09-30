@@ -43,8 +43,8 @@ export default async function AdminDashboardPage() {
   return (
     <AdminShell>
       <div>
-        <h1 className="font-display text-3xl font-bold">대시보드</h1>
-        <p className="mt-2 text-white/60">
+        <h1 className="font-display text-3xl font-bold text-ink">대시보드</h1>
+        <p className="mt-2 text-muted">
           JW Industrial Tech Services 홍보 사이트 콘텐츠와 문의를 관리합니다.
         </p>
         <div className="mt-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
@@ -52,34 +52,37 @@ export default async function AdminDashboardPage() {
             <Link
               key={card.href}
               href={card.href}
-              className="rounded-xl border border-white/10 bg-white/5 p-5 transition hover:border-white/30"
+              className="admin-panel p-5 transition hover:border-[#1f3554]/40"
             >
-              <p className="text-sm text-white/55">{card.label}</p>
-              <p className="mt-2 font-display text-3xl font-bold text-white">
+              <p className="text-sm text-muted">{card.label}</p>
+              <p className="mt-2 font-display text-3xl font-bold text-brand">
                 {card.value}
               </p>
-              <p className="mt-2 text-xs text-white/40">{card.hint}</p>
+              <p className="mt-2 text-xs text-muted">{card.hint}</p>
             </Link>
           ))}
         </div>
 
-        <div className="mt-10 rounded-xl border border-white/10 bg-white/5 p-5">
-          <h2 className="font-display text-xl font-semibold">최근 문의</h2>
+        <div className="admin-panel mt-10 p-5">
+          <h2 className="font-display text-xl font-semibold text-ink">최근 문의</h2>
           {data.inquiries.length === 0 ? (
-            <p className="mt-4 text-sm text-white/50">접수된 문의가 없습니다.</p>
+            <p className="mt-4 text-sm text-muted">접수된 문의가 없습니다.</p>
           ) : (
-            <ul className="mt-4 divide-y divide-white/10">
+            <ul className="mt-4 divide-y divide-line">
               {data.inquiries.slice(0, 5).map((item) => (
-                <li key={item.id} className="flex items-center justify-between gap-4 py-3 text-sm">
+                <li
+                  key={item.id}
+                  className="flex items-center justify-between gap-4 py-3 text-sm"
+                >
                   <div>
-                    <p className="font-medium">{item.name}</p>
-                    <p className="text-white/45">{item.company || item.email}</p>
+                    <p className="font-medium text-ink">{item.name}</p>
+                    <p className="text-muted">{item.company || item.email}</p>
                   </div>
                   <span
                     className={`rounded-full px-2.5 py-1 text-xs ${
                       item.status === "new"
-                        ? "bg-accent/25 text-[#f0b4ad]"
-                        : "bg-white/10 text-white/60"
+                        ? "bg-red-50 text-red-700"
+                        : "bg-paper text-muted"
                     }`}
                   >
                     {item.status}

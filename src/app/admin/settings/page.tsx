@@ -40,15 +40,15 @@ export default function AdminSettingsPage() {
   return (
     <AdminShell>
       <div className="max-w-xl">
-        <h1 className="font-display text-3xl font-bold">계정 설정</h1>
-        <p className="mt-2 text-white/60">관리자 로그인 비밀번호를 변경합니다.</p>
+        <h1 className="font-display text-3xl font-bold text-ink">계정 설정</h1>
+        <p className="mt-2 text-muted">관리자 로그인 비밀번호를 변경합니다.</p>
 
         <form
           onSubmit={onSubmit}
-          className="mt-8 space-y-4 rounded-xl border border-white/10 bg-white/[0.03] p-6"
+          className="mt-8 space-y-4 admin-panel p-6"
         >
           <label className="block text-sm">
-            <span className="mb-1.5 block text-white/60">현재 비밀번호</span>
+            <span className="mb-1.5 block text-muted">현재 비밀번호</span>
             <input
               type="password"
               className="admin-input"
@@ -59,7 +59,7 @@ export default function AdminSettingsPage() {
             />
           </label>
           <label className="block text-sm">
-            <span className="mb-1.5 block text-white/60">새 비밀번호</span>
+            <span className="mb-1.5 block text-muted">새 비밀번호</span>
             <input
               type="password"
               className="admin-input"
@@ -69,10 +69,10 @@ export default function AdminSettingsPage() {
               minLength={8}
               required
             />
-            <span className="mt-1 block text-xs text-white/40">8자 이상</span>
+            <span className="mt-1 block text-xs text-muted">8자 이상</span>
           </label>
           <label className="block text-sm">
-            <span className="mb-1.5 block text-white/60">새 비밀번호 확인</span>
+            <span className="mb-1.5 block text-muted">새 비밀번호 확인</span>
             <input
               type="password"
               className="admin-input"
@@ -84,8 +84,8 @@ export default function AdminSettingsPage() {
             />
           </label>
 
-          {error && <p className="text-sm text-red-400">{error}</p>}
-          {message && <p className="text-sm text-emerald-400">{message}</p>}
+          {error && <p className="text-sm text-red-600">{error}</p>}
+          {message && <p className="text-sm text-emerald-700">{message}</p>}
 
           <button type="submit" className="admin-btn" disabled={saving}>
             {saving ? "변경 중..." : "비밀번호 변경"}

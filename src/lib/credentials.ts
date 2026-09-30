@@ -1,6 +1,7 @@
 import { promises as fs } from "fs";
 import path from "path";
 import { randomBytes, scryptSync, timingSafeEqual } from "crypto";
+import { getDataDir } from "./paths";
 
 type AdminCredentials = {
   username: string;
@@ -9,7 +10,7 @@ type AdminCredentials = {
   updatedAt: string;
 };
 
-const dataDir = path.join(process.cwd(), "data");
+const dataDir = getDataDir();
 const credFile = path.join(dataDir, "admin.json");
 
 function hashPassword(password: string, salt: string) {

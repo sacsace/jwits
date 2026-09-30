@@ -54,12 +54,12 @@ export default function AdminNewsPage() {
 
   return (
     <AdminShell>
-      <h1 className="font-display text-3xl font-bold">뉴스 관리</h1>
-      <p className="mt-2 text-white/60">홈·뉴스 페이지에 노출되는 글을 관리합니다.</p>
+      <h1 className="font-display text-3xl font-bold text-ink">뉴스 관리</h1>
+      <p className="mt-2 text-muted">홈·뉴스 페이지에 노출되는 글을 관리합니다.</p>
 
       <form
         onSubmit={onSubmit}
-        className="mt-8 space-y-3 rounded-xl border border-white/10 p-5"
+        className="mt-8 space-y-3 admin-panel p-5"
       >
         <h2 className="font-display text-xl">
           {editingId ? "뉴스 수정" : "뉴스 등록"}
@@ -106,7 +106,7 @@ export default function AdminNewsPage() {
           {editingId && (
             <button
               type="button"
-              className="admin-btn admin-btn-ghost"
+              className="admin-btn admin-btn-ghost-light"
               onClick={() => {
                 setEditingId(null);
                 setForm(empty);
@@ -122,18 +122,18 @@ export default function AdminNewsPage() {
         {items.map((item) => (
           <li
             key={item.id}
-            className="flex flex-col gap-3 rounded-xl border border-white/10 p-4 md:flex-row md:items-center md:justify-between"
+            className="flex flex-col gap-3 admin-panel p-4 md:flex-row md:items-center md:justify-between"
           >
             <div>
               <p className="font-medium">{item.title}</p>
-              <p className="text-sm text-white/45">
+              <p className="text-sm text-muted">
                 {item.publishedAt} · {item.published ? "공개" : "비공개"}
               </p>
             </div>
             <div className="flex gap-2">
               <button
                 type="button"
-                className="admin-btn admin-btn-ghost"
+                className="admin-btn admin-btn-ghost-light"
                 onClick={() => {
                   setEditingId(item.id);
                   setForm({

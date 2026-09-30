@@ -32,7 +32,7 @@ export default function AdminContentPage() {
   if (!content) {
     return (
       <AdminShell>
-        <p className="text-white/60">불러오는 중...</p>
+        <p className="text-muted">불러오는 중...</p>
       </AdminShell>
     );
   }
@@ -42,16 +42,16 @@ export default function AdminContentPage() {
       <form onSubmit={onSubmit} className="space-y-8">
         <div className="flex items-center justify-between gap-4">
           <div>
-            <h1 className="font-display text-3xl font-bold">사이트 콘텐츠</h1>
-            <p className="mt-2 text-white/60">회사 정보와 히어로 문구를 수정합니다.</p>
+            <h1 className="font-display text-3xl font-bold text-ink">사이트 콘텐츠</h1>
+            <p className="mt-2 text-muted">회사 정보와 히어로 문구를 수정합니다.</p>
           </div>
           <button type="submit" className="admin-btn" disabled={saving}>
             {saving ? "저장 중..." : "저장"}
           </button>
         </div>
-        {message && <p className="text-sm text-white/70">{message}</p>}
+        {message && <p className="text-sm text-muted">{message}</p>}
 
-        <section className="space-y-3 rounded-xl border border-white/10 p-5">
+        <section className="space-y-3 admin-panel p-5">
           <h2 className="font-display text-xl">회사 정보</h2>
           {(
             [
@@ -66,7 +66,7 @@ export default function AdminContentPage() {
             ] as const
           ).map(([key, label]) => (
             <label key={key} className="block text-sm">
-              <span className="mb-1 block text-white/55">{label}</span>
+              <span className="mb-1 block text-muted">{label}</span>
               <input
                 className="admin-input"
                 value={content.company[key]}
@@ -80,7 +80,7 @@ export default function AdminContentPage() {
             </label>
           ))}
           <label className="block text-sm">
-            <span className="mb-1 block text-white/55">회사 소개</span>
+            <span className="mb-1 block text-muted">회사 소개</span>
             <textarea
               className="admin-input min-h-28"
               value={content.company.description}
@@ -94,10 +94,10 @@ export default function AdminContentPage() {
           </label>
         </section>
 
-        <section className="space-y-3 rounded-xl border border-white/10 p-5">
+        <section className="space-y-3 admin-panel p-5">
           <h2 className="font-display text-xl">히어로</h2>
           <label className="block text-sm">
-            <span className="mb-1 block text-white/55">헤드라인 (줄바꿈 \\n)</span>
+            <span className="mb-1 block text-muted">헤드라인 (줄바꿈 \\n)</span>
             <textarea
               className="admin-input min-h-24"
               value={content.hero.headline}
@@ -110,7 +110,7 @@ export default function AdminContentPage() {
             />
           </label>
           <label className="block text-sm">
-            <span className="mb-1 block text-white/55">서브 헤드라인</span>
+            <span className="mb-1 block text-muted">서브 헤드라인</span>
             <textarea
               className="admin-input min-h-24"
               value={content.hero.subheadline}
@@ -124,7 +124,7 @@ export default function AdminContentPage() {
           </label>
           <div className="grid gap-3 md:grid-cols-2">
             <label className="block text-sm">
-              <span className="mb-1 block text-white/55">CTA 1</span>
+              <span className="mb-1 block text-muted">CTA 1</span>
               <input
                 className="admin-input"
                 value={content.hero.ctaPrimary}
@@ -137,7 +137,7 @@ export default function AdminContentPage() {
               />
             </label>
             <label className="block text-sm">
-              <span className="mb-1 block text-white/55">CTA 2</span>
+              <span className="mb-1 block text-muted">CTA 2</span>
               <input
                 className="admin-input"
                 value={content.hero.ctaSecondary}
@@ -152,10 +152,10 @@ export default function AdminContentPage() {
           </div>
         </section>
 
-        <section className="space-y-3 rounded-xl border border-white/10 p-5">
+        <section className="space-y-3 admin-panel p-5">
           <h2 className="font-display text-xl">미션 / 비전</h2>
           <label className="block text-sm">
-            <span className="mb-1 block text-white/55">미션</span>
+            <span className="mb-1 block text-muted">미션</span>
             <textarea
               className="admin-input min-h-24"
               value={content.about.mission}
@@ -168,7 +168,7 @@ export default function AdminContentPage() {
             />
           </label>
           <label className="block text-sm">
-            <span className="mb-1 block text-white/55">비전</span>
+            <span className="mb-1 block text-muted">비전</span>
             <textarea
               className="admin-input min-h-24"
               value={content.about.vision}

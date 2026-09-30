@@ -76,6 +76,26 @@ export const defaultData: AppData = {
       },
     ],
   },
+  greeting: {
+    title: "대표 인사말",
+    name: "Lee",
+    role: "대표이사",
+    message:
+      "JW Industrial Tech Services를 찾아주셔서 감사합니다.\n기아자동차를 비롯한 파트너와 함께 쌓아온 설계·해석·시험 역량을 바탕으로, 고객의 과제를 끝까지 해결하는 엔지니어링 파트너가 되겠습니다.",
+    imageUrl: "",
+    published: true,
+  },
+  team: [
+    {
+      id: "t1",
+      name: "Lee",
+      role: "대표이사",
+      bio: "모빌리티 엔지니어링과 프로젝트 총괄을 담당합니다.",
+      imageUrl: "",
+      order: 1,
+      published: true,
+    },
+  ],
   news: [
     {
       id: "n1",

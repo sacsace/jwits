@@ -55,12 +55,12 @@ export default function AdminProjectsPage() {
 
   return (
     <AdminShell>
-      <h1 className="font-display text-3xl font-bold">실적 관리</h1>
-      <p className="mt-2 text-white/60">프로젝트 포트폴리오를 등록·수정합니다.</p>
+      <h1 className="font-display text-3xl font-bold text-ink">실적 관리</h1>
+      <p className="mt-2 text-muted">프로젝트 포트폴리오를 등록·수정합니다.</p>
 
       <form
         onSubmit={onSubmit}
-        className="mt-8 space-y-3 rounded-xl border border-white/10 p-5"
+        className="mt-8 space-y-3 admin-panel p-5"
       >
         <h2 className="font-display text-xl">
           {editingId ? "실적 수정" : "실적 등록"}
@@ -117,7 +117,7 @@ export default function AdminProjectsPage() {
           {editingId && (
             <button
               type="button"
-              className="admin-btn admin-btn-ghost"
+              className="admin-btn admin-btn-ghost-light"
               onClick={() => {
                 setEditingId(null);
                 setForm(empty);
@@ -133,11 +133,11 @@ export default function AdminProjectsPage() {
         {items.map((item) => (
           <li
             key={item.id}
-            className="flex flex-col gap-3 rounded-xl border border-white/10 p-4 md:flex-row md:items-center md:justify-between"
+            className="flex flex-col gap-3 admin-panel p-4 md:flex-row md:items-center md:justify-between"
           >
             <div>
               <p className="font-medium">{item.title}</p>
-              <p className="text-sm text-white/45">
+              <p className="text-sm text-muted">
                 {item.client} · {item.category} · {item.year}
                 {item.featured ? " · 메인" : ""}
               </p>
@@ -145,7 +145,7 @@ export default function AdminProjectsPage() {
             <div className="flex gap-2">
               <button
                 type="button"
-                className="admin-btn admin-btn-ghost"
+                className="admin-btn admin-btn-ghost-light"
                 onClick={() => {
                   setEditingId(item.id);
                   setForm({
