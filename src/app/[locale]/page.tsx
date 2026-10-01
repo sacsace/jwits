@@ -83,7 +83,7 @@ export default async function HomePage({
         <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[1fr_1.05fr] lg:gap-20">
           <div>
             <SectionHeading title={dict.home.whyTitle} />
-            <p className="text-[15px] leading-7 text-muted">
+            <p className="whitespace-pre-line text-[15px] leading-7 text-muted">
               {dict.company.description}
             </p>
             <p className="mt-6 text-sm text-ink">

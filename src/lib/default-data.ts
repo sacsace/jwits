@@ -8,7 +8,7 @@ export const defaultData: AppData = {
       nameEn: "JW Industrial Tech Services",
       tagline: "Precision Engineering for Mobility",
       description:
-        "JW Industrial Tech Services provides engineering solutions for the automotive and mobility industries. Together with Kia Motors and global OEM/parts partners, we have built trusted capabilities from design through validation.",
+        "JW Industrial Tech Services provides engineering solutions for the automotive and mobility industries.\nTogether with Kia Motors and global OEM/parts partners, we have built trusted capabilities from design through validation.",
       founded: "2012",
       address:
         "24/1, 1st Floor Makers Hotel Biz 120 Doddanekundi, Marathalli Ferns City Road, Bengaluru, Bangalore KA 560037",
@@ -52,7 +52,7 @@ export const defaultData: AppData = {
         title: "기계 설계",
         description:
           "차체·샤시·의장 부품의 컨셉부터 상세 설계까지, 양산성을 고려한 설계를 수행합니다.",
-        items: ["3D CAD 모델링", "DFM/DFA 검토", "공차·체결 설계", "도면 표준화"],
+        items: ["DFM/DFA 검토", "공차·체결 설계", "도면 표준화"],
       },
       {
         id: "cae",
@@ -100,7 +100,7 @@ export const defaultData: AppData = {
   clients: [
     {
       id: "c1",
-      name: "KIA India Private Limited (KIN)",
+      name: "Kia India Private Limited (Kin)",
       location: "Andhra Pradesh",
       note: "",
       logoUrl: "",
@@ -109,7 +109,7 @@ export const defaultData: AppData = {
     },
     {
       id: "c2",
-      name: "HYUNDAI Motor India Limited (HMI)",
+      name: "Hyundai Motor India Limited (Hmi)",
       location: "Chennai",
       note: "",
       logoUrl: "",
@@ -127,7 +127,7 @@ export const defaultData: AppData = {
     },
     {
       id: "c4",
-      name: "Toyota Kirloskar Motor Private Limited (TKM)",
+      name: "Toyota Kirloskar Motor Private Limited (Tkm)",
       location: "Bangalore",
       note: "",
       logoUrl: "",
@@ -145,7 +145,7 @@ export const defaultData: AppData = {
     },
     {
       id: "c6",
-      name: "Fiat India Automobiles Limited (FCA)",
+      name: "Fiat India Automobiles Limited (Fca)",
       location: "Pune",
       note: "",
       logoUrl: "",
@@ -181,7 +181,7 @@ export const defaultData: AppData = {
     },
     {
       id: "c10",
-      name: "SEOYON E-HWA SUMMIT ANANTAPUR",
+      name: "Seoyon E-Hwa Summit Anantapur",
       location: "Andhra Pradesh",
       note: "",
       logoUrl: "",
@@ -190,7 +190,7 @@ export const defaultData: AppData = {
     },
     {
       id: "c11",
-      name: "TOYOTA TSUSHO INDIA PRIVATE LIMITED",
+      name: "Toyota Tsusho India Private Limited",
       location: "Bangalore",
       note: "",
       logoUrl: "",
@@ -208,7 +208,7 @@ export const defaultData: AppData = {
     },
     {
       id: "c13",
-      name: "KOMATSU INDIA PVT. LTD.",
+      name: "Komatsu India Pvt. Ltd.",
       location: "Bangalore, Delhi",
       note: "",
       logoUrl: "",
@@ -226,7 +226,7 @@ export const defaultData: AppData = {
     },
     {
       id: "c15",
-      name: "Jay Bharat Maruti Ltd. (JBM)",
+      name: "Jay Bharat Maruti Ltd. (Jbm)",
       location: "Delhi",
       note: "",
       logoUrl: "",
@@ -244,7 +244,7 @@ export const defaultData: AppData = {
     },
     {
       id: "c17",
-      name: "UNIPRESS INDIA Pvt. Ltd.",
+      name: "Unipress India Pvt. Ltd.",
       location: "Chennai",
       note: "",
       logoUrl: "",
@@ -253,7 +253,7 @@ export const defaultData: AppData = {
     },
     {
       id: "c18",
-      name: "Sungwoo Hitech AP Pvt Ltd",
+      name: "Sungwoo Hitech Ap Pvt Ltd",
       location: "Chennai",
       note: "",
       logoUrl: "",
@@ -262,7 +262,7 @@ export const defaultData: AppData = {
     },
     {
       id: "c19",
-      name: "MYOUNGSHIN INDIA PVT LTD",
+      name: "Myoungshin India Pvt Ltd",
       location: "Chennai",
       note: "",
       logoUrl: "",
@@ -271,7 +271,7 @@ export const defaultData: AppData = {
     },
     {
       id: "c20",
-      name: "PHA INDIA LTD",
+      name: "Pha India Ltd",
       location: "Chennai",
       note: "",
       logoUrl: "",
@@ -289,7 +289,7 @@ export const defaultData: AppData = {
     },
     {
       id: "c22",
-      name: "POSCO India Private Limited",
+      name: "Posco India Private Limited",
       location: "Chennai",
       note: "",
       logoUrl: "",

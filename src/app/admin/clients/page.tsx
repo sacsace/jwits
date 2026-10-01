@@ -3,6 +3,7 @@
 import { FormEvent, useEffect, useState } from "react";
 import { AdminShell } from "@/components/admin/AdminShell";
 import { ImageUploadField } from "@/components/admin/ImageUploadField";
+import { toNameCase } from "@/lib/text";
 import type { ClientCompany } from "@/lib/types";
 
 const empty: Omit<ClientCompany, "id"> = {
@@ -30,17 +31,18 @@ export default function AdminClientsPage() {
 
   async function onSubmit(e: FormEvent) {
     e.preventDefault();
+    const payload = { ...form, name: toNameCase(form.name) };
     if (editingId) {
       await fetch("/api/clients", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...form, id: editingId }),
+        body: JSON.stringify({ ...payload, id: editingId }),
       });
     } else {
       await fetch("/api/clients", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify(payload),
       });
     }
     setForm({ ...empty, order: items.length + 1 });
@@ -56,11 +58,14 @@ export default function AdminClientsPage() {
 
   return (
     <AdminShell>
-      <h1 className="font-display text-3xl font-bold text-ink">주요 고객사</h1>
-      <p className="mt-2 text-muted">홈·회사소개에 노출되는 주요 고객사를 관리합니다.</p>
+      <h1 className="font-display text-xl font-bold text-ink">주요 고객사</h1>
+      <p className="mt-1 text-[13px] text-muted">
+        홈·회사소개에 노출되는 주요 고객사를 관리합니다. 회사명은 첫 글자 대문자로
+        자동 정리됩니다.
+      </p>
 
-      <form onSubmit={onSubmit} className="mt-8 space-y-3 admin-panel p-5">
-        <h2 className="font-display text-xl text-ink">
+      <form onSubmit={onSubmit} className="mt-5 space-y-2.5 admin-panel p-4">
+        <h2 className="text-[15px] font-semibold text-ink">
           {editingId ? "고객사 수정" : "고객사 등록"}
         </h2>
         <input
@@ -68,9 +73,12 @@ export default function AdminClientsPage() {
           placeholder="회사명"
           value={form.name}
           onChange={(e) => setForm({ ...form, name: e.target.value })}
+          onBlur={() =>
+            setForm((prev) => ({ ...prev, name: toNameCase(prev.name) }))
+          }
           required
         />
-        <div className="grid gap-3 md:grid-cols-2">
+        <div className="grid gap-2.5 md:grid-cols-2">
           <input
             className="admin-input"
             placeholder="지역 (선택)"
@@ -99,8 +107,8 @@ export default function AdminClientsPage() {
           value={form.logoUrl}
           onChange={(logoUrl) => setForm({ ...form, logoUrl })}
         />
-        <div className="flex flex-wrap items-center gap-4">
-          <label className="flex items-center gap-2 text-sm text-ink">
+        <div className="flex flex-wrap items-center gap-3">
+          <label className="flex items-center gap-2 text-[13px] text-ink">
             <input
               type="checkbox"
               checked={form.published}
@@ -126,7 +134,7 @@ export default function AdminClientsPage() {
         </div>
       </form>
 
-      <ul className="mt-8 space-y-2">
+      <ul className="mt-5 space-y-2">
         {items.map((item) => (
           <li
             key={item.id}
@@ -157,7 +165,7 @@ export default function AdminClientsPage() {
             <div className="flex shrink-0 gap-2">
               <button
                 type="button"
-                className="admin-btn admin-btn-ghost-light !px-2.5 !py-1.5 !text-xs"
+                className="admin-btn admin-btn-ghost-light"
                 onClick={() => {
                   setEditingId(item.id);
                   setForm({
@@ -174,7 +182,7 @@ export default function AdminClientsPage() {
               </button>
               <button
                 type="button"
-                className="admin-btn admin-btn-danger !px-2.5 !py-1.5 !text-xs"
+                className="admin-btn admin-btn-danger"
                 onClick={() => remove(item.id)}
               >
                 삭제

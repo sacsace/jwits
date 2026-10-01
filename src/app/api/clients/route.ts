@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { v4 as uuid } from "uuid";
 import { getAdminSession } from "@/lib/auth";
 import { readStore, updateStore } from "@/lib/store";
+import { toNameCase } from "@/lib/text";
 import type { ClientCompany } from "@/lib/types";
 
 export async function GET(request: Request) {
@@ -24,6 +25,7 @@ export async function POST(request: Request) {
   const item: ClientCompany = {
     ...body,
     id: uuid(),
+    name: toNameCase(body.name || ""),
     location: body.location ?? "",
     note: body.note ?? "",
     logoUrl: body.logoUrl ?? "",
@@ -41,7 +43,11 @@ export async function PUT(request: Request) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const item = (await request.json()) as ClientCompany;
+  const body = (await request.json()) as ClientCompany;
+  const item: ClientCompany = {
+    ...body,
+    name: toNameCase(body.name || ""),
+  };
   await updateStore((data) => ({
     ...data,
     clients: data.clients

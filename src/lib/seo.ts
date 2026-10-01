@@ -55,7 +55,10 @@ export function buildPageMetadata({
   const path = localizedPath(locale, pathWithoutLocale);
   const url = `${site}${path}`;
   const pageTitle = title || dict.brandName;
-  const pageDescription = description || dict.company.description;
+  const pageDescription = (description || dict.company.description).replace(
+    /\s*\n\s*/g,
+    " "
+  );
 
   return {
     title: title ? title : { absolute: dict.brandName },

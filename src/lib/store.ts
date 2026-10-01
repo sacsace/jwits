@@ -2,7 +2,8 @@ import { promises as fs } from "fs";
 import path from "path";
 import { defaultData } from "./default-data";
 import { getDataDir } from "./paths";
-import type { AppData, ProjectItem } from "./types";
+import { toNameCase } from "./text";
+import type { AppData, ClientCompany, ProjectItem } from "./types";
 
 const dataDir = getDataDir();
 const dataFile = path.join(dataDir, "store.json");
@@ -13,40 +14,63 @@ function isNewProjectSchema(projects: unknown): projects is ProjectItem[] {
   return typeof first.projectName === "string";
 }
 
-function normalizeStore(raw: Partial<AppData>): AppData {
+function normalizeClients(clients: ClientCompany[]): {
+  clients: ClientCompany[];
+  changed: boolean;
+} {
+  let changed = false;
+  const next = clients.map((client) => {
+    const name = toNameCase(client.name || "");
+    if (name !== client.name) changed = true;
+    return { ...client, name };
+  });
+  return { clients: next, changed };
+}
+
+function normalizeStore(raw: Partial<AppData>): {
+  data: AppData;
+  clientsChanged: boolean;
+} {
   const projects = isNewProjectSchema(raw.projects)
     ? raw.projects
     : defaultData.projects;
 
+  const { clients, changed: clientsChanged } = normalizeClients(
+    raw.clients ?? defaultData.clients
+  );
+
   return {
-    ...defaultData,
-    ...raw,
-    content: {
-      ...defaultData.content,
-      ...(raw.content ?? {}),
-      company: {
-        ...defaultData.content.company,
-        ...(raw.content?.company ?? {}),
+    clientsChanged,
+    data: {
+      ...defaultData,
+      ...raw,
+      content: {
+        ...defaultData.content,
+        ...(raw.content ?? {}),
+        company: {
+          ...defaultData.content.company,
+          ...(raw.content?.company ?? {}),
+        },
+        hero: {
+          ...defaultData.content.hero,
+          ...(raw.content?.hero ?? {}),
+        },
+        about: {
+          ...defaultData.content.about,
+          ...(raw.content?.about ?? {}),
+        },
+        services: raw.content?.services ?? defaultData.content.services,
       },
-      hero: {
-        ...defaultData.content.hero,
-        ...(raw.content?.hero ?? {}),
+      greeting: {
+        ...defaultData.greeting,
+        ...(raw.greeting ?? {}),
       },
-      about: {
-        ...defaultData.content.about,
-        ...(raw.content?.about ?? {}),
-      },
-      services: raw.content?.services ?? defaultData.content.services,
+      team: raw.team ?? defaultData.team,
+      clients,
+      news: raw.news ?? defaultData.news,
+      projects,
+      inquiries: raw.inquiries ?? defaultData.inquiries,
     },
-    greeting: {
-      ...defaultData.greeting,
-      ...(raw.greeting ?? {}),
-    },
-    team: raw.team ?? defaultData.team,
-    clients: raw.clients ?? defaultData.clients,
-    news: raw.news ?? defaultData.news,
-    projects,
-    inquiries: raw.inquiries ?? defaultData.inquiries,
   };
 }
 
@@ -63,13 +87,14 @@ export async function readStore(): Promise<AppData> {
   await ensureStore();
   const raw = await fs.readFile(dataFile, "utf-8");
   const parsed = JSON.parse(raw) as Partial<AppData>;
-  const normalized = normalizeStore(parsed);
+  const { data: normalized, clientsChanged } = normalizeStore(parsed);
 
   if (
     !parsed.greeting ||
     !parsed.team ||
     !parsed.clients ||
-    !isNewProjectSchema(parsed.projects)
+    !isNewProjectSchema(parsed.projects) ||
+    clientsChanged
   ) {
     await writeStore(normalized);
   }

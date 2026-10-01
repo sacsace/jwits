@@ -43,7 +43,7 @@ export default async function ProjectsPage({
         description={dict.projectsPage.description}
       />
 
-      <section className="mx-auto max-w-6xl px-5 py-14">
+      <section className="mx-auto w-full max-w-[96rem] px-4 py-14 sm:px-6 lg:px-8">
         <SectionHeading title={dict.projectsPage.portfolioTitle} />
         <ProjectsTable
           projects={projects}

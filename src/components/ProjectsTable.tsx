@@ -63,7 +63,7 @@ export function ProjectsTable({
       </div>
 
       <div className="overflow-x-auto border border-line">
-        <table className="w-full min-w-[1100px] border-collapse text-left text-[12px]">
+        <table className="w-full min-w-[1280px] border-collapse text-left text-[12px]">
           <thead>
             <tr className="bg-[#1f3554] text-white">
               {[

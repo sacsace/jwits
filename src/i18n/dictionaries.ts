@@ -228,7 +228,7 @@ const ko: Dictionary = {
   },
   company: {
     description:
-      "JW Industrial Tech Services는 자동차 및 모빌리티 산업을 위한 엔지니어링 솔루션을 제공합니다. 기아자동차를 비롯한 글로벌 완성차·부품 파트너와 함께 설계부터 검증까지 신뢰할 수 있는 기술력을 쌓아왔습니다.",
+      "JW Industrial Tech Services는 자동차 및 모빌리티 산업을 위한 엔지니어링 솔루션을 제공합니다.\n기아자동차를 비롯한 글로벌 완성차·부품 파트너와 함께 설계부터 검증까지 신뢰할 수 있는 기술력을 쌓아왔습니다.",
     founded: "2012",
     address:
       "24/1, 1st Floor Makers Hotel Biz 120 Doddanekundi, Marathalli Ferns City Road, Bengaluru, Bangalore KA 560037",
@@ -274,7 +274,7 @@ const ko: Dictionary = {
       title: "기계 설계",
       description:
         "차체·샤시·의장 부품의 컨셉부터 상세 설계까지, 양산성을 고려한 설계를 수행합니다.",
-      items: ["3D CAD 모델링", "DFM/DFA 검토", "공차·체결 설계", "도면 표준화"],
+      items: ["DFM/DFA 검토", "공차·체결 설계", "도면 표준화"],
     },
     {
       id: "cae",
@@ -472,7 +472,7 @@ const en: Dictionary = {
   },
   company: {
     description:
-      "JW Industrial Tech Services provides engineering solutions for the automotive and mobility industries. Together with Kia Motors and global OEM/parts partners, we have built trusted capabilities from design through validation.",
+      "JW Industrial Tech Services provides engineering solutions for the automotive and mobility industries.\nTogether with Kia Motors and global OEM/parts partners, we have built trusted capabilities from design through validation.",
     founded: "2012",
     address:
       "24/1, 1st Floor Makers Hotel Biz 120 Doddanekundi, Marathalli Ferns City Road, Bengaluru, Bangalore KA 560037",
@@ -518,7 +518,7 @@ const en: Dictionary = {
       title: "Mechanical design",
       description:
         "From concept to detailed design for body, chassis, and trim parts with manufacturability in focus.",
-      items: ["3D CAD modeling", "DFM/DFA review", "Tolerance & fastening design", "Drawing standardization"],
+      items: ["DFM/DFA review", "Tolerance & fastening design", "Drawing standardization"],
     },
     {
       id: "cae",
@@ -709,7 +709,7 @@ const zh: Dictionary = {
   },
   company: {
     description:
-      "JW Industrial Tech Services 为汽车及出行产业提供工程解决方案。我们与起亚汽车等全球整车及零部件伙伴合作，积累了从设计到验证的可靠技术能力。",
+      "JW Industrial Tech Services 为汽车及出行产业提供工程解决方案。\n我们与起亚汽车等全球整车及零部件伙伴合作，积累了从设计到验证的可靠技术能力。",
     founded: "2012",
     address:
       "24/1, 1st Floor Makers Hotel Biz 120 Doddanekundi, Marathalli Ferns City Road, Bengaluru, Bangalore KA 560037",
@@ -751,7 +751,7 @@ const zh: Dictionary = {
       id: "design",
       title: "机械设计",
       description: "从车身、底盘与内饰零件概念到详细设计，兼顾量产性。",
-      items: ["3D CAD 建模", "DFM/DFA 审查", "公差与紧固设计", "图纸标准化"],
+      items: ["DFM/DFA 审查", "公差与紧固设计", "图纸标准化"],
     },
     {
       id: "cae",
@@ -933,7 +933,7 @@ const ja: Dictionary = {
   },
   company: {
     description:
-      "JW Industrial Tech Servicesは、自動車およびモビリティ産業向けのエンジニアリングソリューションを提供します。起亜自動車をはじめとするグローバル完成車・部品パートナーとともに、設計から検証まで信頼できる技術力を積み重ねてきました。",
+      "JW Industrial Tech Servicesは、自動車およびモビリティ産業向けのエンジニアリングソリューションを提供します。\n起亜自動車をはじめとするグローバル完成車・部品パートナーとともに、設計から検証まで信頼できる技術力を積み重ねてきました。",
     founded: "2012",
     address:
       "24/1, 1st Floor Makers Hotel Biz 120 Doddanekundi, Marathalli Ferns City Road, Bengaluru, Bangalore KA 560037",
@@ -975,7 +975,7 @@ const ja: Dictionary = {
       id: "design",
       title: "機械設計",
       description: "車体・シャシー・内装部品のコンセプトから詳細設計まで、量産性を考慮して対応します。",
-      items: ["3D CADモデリング", "DFM/DFA検討", "公差・締結設計", "図面標準化"],
+      items: ["DFM/DFA検討", "公差・締結設計", "図面標準化"],
     },
     {
       id: "cae",
