@@ -1,6 +1,16 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { defaultLocale, isLocale } from "@/i18n/config";
+import {
+  isLocale,
+  LOCALE_COOKIE,
+  negotiateLocale,
+} from "@/i18n/config";
+
+function preferredLocale(request: NextRequest) {
+  const cookie = request.cookies.get(LOCALE_COOKIE)?.value;
+  if (cookie && isLocale(cookie)) return cookie;
+  return negotiateLocale(request.headers.get("accept-language"));
+}
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -10,6 +20,8 @@ export function middleware(request: NextRequest) {
     pathname.startsWith("/uploads") ||
     pathname.startsWith("/_next") ||
     pathname.startsWith("/admin") ||
+    pathname.startsWith("/sitemap") ||
+    pathname.startsWith("/robots") ||
     pathname.includes(".")
   ) {
     if (pathname.startsWith("/admin") && pathname !== "/admin/login") {
@@ -23,13 +35,26 @@ export function middleware(request: NextRequest) {
 
   const segment = pathname.split("/")[1];
   if (!isLocale(segment)) {
+    const locale = preferredLocale(request);
     const url = request.nextUrl.clone();
     url.pathname =
-      pathname === "/" ? `/${defaultLocale}` : `/${defaultLocale}${pathname}`;
-    return NextResponse.redirect(url);
+      pathname === "/" ? `/${locale}` : `/${locale}${pathname}`;
+    const res = NextResponse.redirect(url);
+    res.cookies.set(LOCALE_COOKIE, locale, {
+      path: "/",
+      maxAge: 60 * 60 * 24 * 365,
+      sameSite: "lax",
+    });
+    return res;
   }
 
-  return NextResponse.next();
+  const res = NextResponse.next();
+  res.cookies.set(LOCALE_COOKIE, segment, {
+    path: "/",
+    maxAge: 60 * 60 * 24 * 365,
+    sameSite: "lax",
+  });
+  return res;
 }
 
 export const config = {

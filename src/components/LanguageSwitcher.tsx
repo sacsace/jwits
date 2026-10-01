@@ -2,7 +2,18 @@
 
 import { useEffect, useRef, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { localeLabels, locales, type Locale } from "@/i18n/config";
+import {
+  LOCALE_COOKIE,
+  localeLabels,
+  locales,
+  type Locale,
+} from "@/i18n/config";
+
+function setLocaleCookie(locale: Locale) {
+  document.cookie = `${LOCALE_COOKIE}=${locale}; path=/; max-age=${
+    60 * 60 * 24 * 365
+  }; samesite=lax`;
+}
 
 export function LanguageSwitcher({ locale }: { locale: Locale }) {
   const router = useRouter();
@@ -13,7 +24,8 @@ export function LanguageSwitcher({ locale }: { locale: Locale }) {
 
   useEffect(() => {
     setMounted(true);
-  }, []);
+    setLocaleCookie(locale);
+  }, [locale]);
 
   useEffect(() => {
     function onPointerDown(e: MouseEvent) {
@@ -37,6 +49,7 @@ export function LanguageSwitcher({ locale }: { locale: Locale }) {
   function selectLocale(next: Locale) {
     setOpen(false);
     if (next === locale) return;
+    setLocaleCookie(next);
     router.push(switchPath(next));
   }
 

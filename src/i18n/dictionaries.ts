@@ -63,6 +63,9 @@ export type Dictionary = {
     title: string;
     description: string;
     portfolioTitle: string;
+    searchPlaceholder: string;
+    emptyLabel: string;
+    resultLabel: string;
   };
   newsPage: {
     title: string;
@@ -92,6 +95,7 @@ export type Dictionary = {
     familySites: string;
     familySitesPlaceholder: string;
     developedBy: string;
+    admin: string;
   };
   company: {
     description: string;
@@ -187,6 +191,9 @@ const ko: Dictionary = {
     description:
       "기아자동차를 주요 고객으로, 설계·해석·시험·공정 과제를 수행해 왔습니다.",
     portfolioTitle: "프로젝트 포트폴리오",
+    searchPlaceholder: "연도, 고객, 프로젝트명 검색",
+    emptyLabel: "검색 결과가 없습니다.",
+    resultLabel: "{filtered} / {total}건",
   },
   newsPage: {
     title: "뉴스·공지",
@@ -217,6 +224,7 @@ const ko: Dictionary = {
     familySites: "패밀리 사이트",
     familySitesPlaceholder: "사이트 선택",
     developedBy: "Developed by",
+    admin: "관리자",
   },
   company: {
     description:
@@ -427,6 +435,9 @@ const en: Dictionary = {
     description:
       "With Kia Motors as a key client, we have delivered design, analysis, testing, and process projects.",
     portfolioTitle: "Project portfolio",
+    searchPlaceholder: "Search year, client, project name",
+    emptyLabel: "No matching projects.",
+    resultLabel: "{filtered} / {total}",
   },
   newsPage: {
     title: "News",
@@ -457,6 +468,7 @@ const en: Dictionary = {
     familySites: "Family sites",
     familySitesPlaceholder: "Select a site",
     developedBy: "Developed by",
+    admin: "Admin",
   },
   company: {
     description:
@@ -661,6 +673,9 @@ const zh: Dictionary = {
     title: "项目业绩",
     description: "以起亚汽车为主要客户，完成设计、解析、试验与工艺相关项目。",
     portfolioTitle: "项目组合",
+    searchPlaceholder: "搜索年份、客户、项目名称",
+    emptyLabel: "没有匹配的项目。",
+    resultLabel: "{filtered} / {total}",
   },
   newsPage: {
     title: "新闻公告",
@@ -690,6 +705,7 @@ const zh: Dictionary = {
     familySites: "关联站点",
     familySitesPlaceholder: "选择站点",
     developedBy: "Developed by",
+    admin: "管理后台",
   },
   company: {
     description:
@@ -881,6 +897,9 @@ const ja: Dictionary = {
     title: "実績",
     description: "起亜自動車を主要顧客として、設計・解析・試験・工程の課題に対応してきました。",
     portfolioTitle: "プロジェクトポートフォリオ",
+    searchPlaceholder: "年・顧客・プロジェクト名で検索",
+    emptyLabel: "該当するプロジェクトがありません。",
+    resultLabel: "{filtered} / {total}",
   },
   newsPage: {
     title: "ニュース・お知らせ",
@@ -910,6 +929,7 @@ const ja: Dictionary = {
     familySites: "ファミリーサイト",
     familySitesPlaceholder: "サイトを選択",
     developedBy: "Developed by",
+    admin: "管理画面",
   },
   company: {
     description:

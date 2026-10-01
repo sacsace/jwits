@@ -35,6 +35,9 @@ export function SiteFooter({
             <Link href={`${base}/contact`} className="hover:text-brand">
               {dict.nav.contact}
             </Link>
+            <Link href="/admin" className="hover:text-brand">
+              {dict.footer.admin}
+            </Link>
           </div>
         </div>
 

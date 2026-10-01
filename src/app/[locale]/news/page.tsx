@@ -2,7 +2,19 @@ import { notFound } from "next/navigation";
 import { PageHero, SectionHeading } from "@/components/ui";
 import { getDictionary } from "@/i18n/dictionaries";
 import { isLocale, type Locale } from "@/i18n/config";
+import { createLocaleMetadata } from "@/lib/page-meta";
 import { readStore } from "@/lib/store";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  return createLocaleMetadata(params, "/news", (dict) => ({
+    title: dict.newsPage.title,
+    description: dict.newsPage.updatesTitle,
+  }));
+}
 
 export default async function NewsPage({
   params,

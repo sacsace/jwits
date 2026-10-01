@@ -2,6 +2,18 @@ import { notFound } from "next/navigation";
 import { PageHero, SectionHeading } from "@/components/ui";
 import { getDictionary } from "@/i18n/dictionaries";
 import { isLocale, type Locale } from "@/i18n/config";
+import { createLocaleMetadata } from "@/lib/page-meta";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  return createLocaleMetadata(params, "/services", (dict) => ({
+    title: dict.servicesPage.title,
+    description: dict.servicesPage.description,
+  }));
+}
 
 export default async function ServicesPage({
   params,

@@ -8,6 +8,7 @@ export function LoginForm() {
   const router = useRouter();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -55,13 +56,23 @@ export function LoginForm() {
       </label>
       <label className="block text-sm">
         <span className="mb-1.5 block text-muted">비밀번호</span>
-        <input
-          name="password"
-          type="password"
-          required
-          className="admin-input"
-          autoComplete="current-password"
-        />
+        <div className="relative">
+          <input
+            name="password"
+            type={showPassword ? "text" : "password"}
+            required
+            className="admin-input pr-16"
+            autoComplete="current-password"
+          />
+          <button
+            type="button"
+            className="absolute right-2 top-1/2 -translate-y-1/2 rounded px-2 py-1 text-[12px] text-muted hover:text-ink"
+            onClick={() => setShowPassword((v) => !v)}
+            aria-label={showPassword ? "비밀번호 숨기기" : "비밀번호 보기"}
+          >
+            {showPassword ? "숨기기" : "보기"}
+          </button>
+        </div>
       </label>
       {error && <p className="text-sm text-red-600">{error}</p>}
       <button type="submit" disabled={loading} className="admin-btn w-full">

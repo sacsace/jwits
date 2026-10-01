@@ -2,7 +2,19 @@ import { notFound } from "next/navigation";
 import { PageHero, SectionHeading } from "@/components/ui";
 import { getDictionary } from "@/i18n/dictionaries";
 import { isLocale, type Locale } from "@/i18n/config";
+import { createLocaleMetadata } from "@/lib/page-meta";
 import { readStore } from "@/lib/store";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  return createLocaleMetadata(params, "/about", (dict) => ({
+    title: dict.aboutPage.title,
+    description: dict.company.description,
+  }));
+}
 
 export default async function AboutPage({
   params,
@@ -174,7 +186,6 @@ export default async function AboutPage({
             {[
               [dict.aboutPage.labels.company, dict.brandName],
               [dict.aboutPage.labels.founded, dict.company.founded],
-              [dict.aboutPage.labels.keyClient, dict.company.keyClient],
               [dict.aboutPage.labels.address, dict.company.address],
               [dict.aboutPage.labels.email, dict.company.email],
             ].map(([label, value]) => (

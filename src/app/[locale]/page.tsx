@@ -5,7 +5,19 @@ import { GhostButton, PrimaryButton, SectionHeading } from "@/components/ui";
 import { HeroVideo } from "@/components/HeroVideo";
 import { getDictionary } from "@/i18n/dictionaries";
 import { isLocale, type Locale } from "@/i18n/config";
+import { createLocaleMetadata } from "@/lib/page-meta";
 import { readStore } from "@/lib/store";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  return createLocaleMetadata(params, "", (dict) => ({
+    title: dict.brandName,
+    description: dict.company.description,
+  }));
+}
 
 export default async function HomePage({
   params,
@@ -75,9 +87,6 @@ export default async function HomePage({
               {dict.company.description}
             </p>
             <p className="mt-6 text-sm text-ink">
-              {dict.home.keyClient} ·{" "}
-              <span className="font-semibold">{dict.company.keyClient}</span>
-              <span className="mx-2 text-line">|</span>
               {dict.home.founded} {dict.company.founded}
             </p>
           </div>
