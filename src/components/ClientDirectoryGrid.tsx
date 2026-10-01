@@ -18,9 +18,9 @@ export function ClientDirectoryGrid({
       {clients.map((client) => (
         <li
           key={client.id}
-          className="flex flex-col overflow-hidden rounded-lg border border-line bg-white"
+          className="flex h-full flex-col overflow-hidden rounded-lg border border-line bg-white"
         >
-          <div className="flex aspect-[5/3] items-center justify-center bg-paper/60 p-3">
+          <div className="flex aspect-[5/3] shrink-0 items-center justify-center bg-paper/60 p-3">
             {client.logoUrl ? (
               // eslint-disable-next-line @next/next/no-img-element
               <img
@@ -34,8 +34,11 @@ export function ClientDirectoryGrid({
               </div>
             )}
           </div>
-          <div className="border-t border-line px-2 py-2.5 text-center">
-            <p className="line-clamp-2 text-[12px] font-medium leading-snug text-ink">
+          <div className="flex h-10 shrink-0 items-center border-t border-line px-2">
+            <p
+              className="w-full truncate text-center text-[12px] font-medium leading-none text-ink"
+              title={client.name}
+            >
               {client.name}
             </p>
           </div>
