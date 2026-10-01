@@ -1,5 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
 
 type BrandLogoProps = {
   href?: string;
@@ -18,11 +18,53 @@ const markSizes = {
   lg: { width: 56, height: 56, text: "text-xl md:text-2xl" },
 };
 
-const horizontalSizes = {
-  sm: { width: 160, height: 36 },
-  md: { width: 220, height: 48 },
-  lg: { width: 280, height: 60 },
+const wordmarkSize = {
+  sm: {
+    main: "text-[11px] md:text-[12px]",
+    sub: "mt-0.5 text-[7px] tracking-[0.38em] md:text-[8px]",
+  },
+  md: {
+    main: "text-[12px] md:text-[14px]",
+    sub: "mt-1 text-[8px] tracking-[0.4em] md:text-[9px]",
+  },
+  lg: {
+    main: "text-[16px] md:text-[20px]",
+    sub: "mt-1.5 text-[10px] tracking-[0.42em] md:text-[12px]",
+  },
 };
+
+function HorizontalWordmark({
+  inverted,
+  size,
+  className = "",
+}: {
+  inverted?: boolean;
+  size: "sm" | "md" | "lg";
+  className?: string;
+}) {
+  const s = wordmarkSize[size];
+  return (
+    <span
+      className={`inline-flex max-w-full flex-col leading-none ${
+        inverted ? "text-white" : "text-ink"
+      } ${className}`}
+      aria-label="JW Industrial Tech Services Private Limited"
+    >
+      <span
+        className={`font-display font-bold uppercase tracking-[0.02em] ${s.main}`}
+      >
+        JW Industrial Tech Services
+      </span>
+      <span
+        className={`font-medium uppercase ${
+          inverted ? "text-white/75" : "text-muted"
+        } ${s.sub}`}
+      >
+        Private Limited
+      </span>
+    </span>
+  );
+}
 
 export function BrandLogo({
   href = "/",
@@ -35,31 +77,24 @@ export function BrandLogo({
 }: BrandLogoProps) {
   const content =
     variant === "horizontal" ? (
-      <span className={`inline-flex max-w-full items-center ${className}`}>
-        <Image
-          src="/logo-horizontal-transparent.png"
-          alt={name}
-          width={horizontalSizes[size].width}
-          height={horizontalSizes[size].height}
-          className={`h-9 w-auto max-w-[min(70vw,240px)] object-contain object-left md:h-11 md:max-w-[280px] ${
-            inverted ? "brightness-0 invert" : ""
-          }`}
-          priority
-        />
-      </span>
+      <HorizontalWordmark inverted={inverted} size={size} className={className} />
     ) : (
       <span className={`inline-flex max-w-full items-center gap-2.5 ${className}`}>
         <span
-          className={`inline-flex shrink-0 items-center justify-center rounded-full ${
-            inverted ? "bg-white p-1" : ""
+          className={`relative inline-flex shrink-0 overflow-hidden rounded-full ${
+            inverted ? "bg-white p-0.5" : ""
           }`}
+          style={{
+            width: markSizes[size].width,
+            height: markSizes[size].height,
+          }}
         >
           <Image
             src="/logo.png"
             alt={`${name} logo`}
-            width={markSizes[size].width}
-            height={markSizes[size].height}
-            className="object-contain"
+            fill
+            sizes={`${markSizes[size].width}px`}
+            className="object-cover"
             priority={size !== "sm"}
           />
         </span>

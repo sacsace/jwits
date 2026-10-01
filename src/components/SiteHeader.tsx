@@ -48,8 +48,8 @@ export function SiteHeader({
       <header
         className={`fixed left-0 right-0 top-0 z-50 transition-colors duration-200 ${
           solid
-            ? "border-b border-line bg-surface/95 shadow-sm backdrop-blur-sm"
-            : "border-b border-white/15 bg-black/25 backdrop-blur-[2px]"
+            ? "border-b border-line bg-surface/95 shadow-sm"
+            : "border-b border-white/15 bg-black/30"
         }`}
       >
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-3">

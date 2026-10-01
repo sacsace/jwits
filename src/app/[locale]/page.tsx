@@ -1,6 +1,6 @@
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { BrandLogo } from "@/components/BrandLogo";
 import { GhostButton, PrimaryButton, SectionHeading } from "@/components/ui";
 import { HeroVideo } from "@/components/HeroVideo";
 import { getDictionary } from "@/i18n/dictionaries";
@@ -42,13 +42,12 @@ export default async function HomePage({
         <div className="hero-photo__shade" />
         <div className="relative mx-auto flex h-full min-h-[100dvh] max-w-6xl flex-col justify-end px-5 pb-16 pt-28 md:justify-center md:pb-24">
           <div className="rise">
-            <Image
-              src="/logo-horizontal-transparent.png"
-              alt={dict.brandName}
-              width={420}
-              height={56}
-              className="h-10 w-auto max-w-[min(88vw,420px)] object-contain object-left brightness-0 invert md:h-12"
-              priority
+            <BrandLogo
+              href=""
+              size="lg"
+              variant="horizontal"
+              inverted
+              name={dict.brandName}
             />
           </div>
           <h1 className="rise-delay mt-8 max-w-2xl whitespace-pre-line font-display text-3xl font-semibold leading-snug md:text-[2.75rem]">
