@@ -18,7 +18,7 @@ export function ClientDirectoryGrid({
       {clients.map((client) => (
         <li
           key={client.id}
-          className="grid aspect-square grid-rows-2 overflow-hidden rounded-lg border border-line bg-white"
+          className="grid aspect-square grid-rows-[7fr_3fr] overflow-hidden rounded-lg border border-line bg-white"
         >
           <div className="flex min-h-0 items-center justify-center bg-paper/60 p-3">
             {client.logoUrl ? (
@@ -36,7 +36,7 @@ export function ClientDirectoryGrid({
           </div>
           <div className="flex min-h-0 items-center border-t border-line px-2">
             <p
-              className="line-clamp-2 w-full text-center text-[12px] font-medium leading-snug text-ink"
+              className="line-clamp-2 w-full text-center text-[12px] font-bold leading-snug text-ink"
               title={client.name}
             >
               {client.name}
