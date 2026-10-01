@@ -2,7 +2,16 @@ import type { MetadataRoute } from "next";
 import { locales } from "@/i18n/config";
 import { getSiteUrl, localizedPath } from "@/lib/seo";
 
-const paths = ["", "/about", "/services", "/projects", "/news", "/contact"];
+const paths = [
+  "",
+  "/about",
+  "/services",
+  "/projects",
+  "/clients",
+  "/gallery",
+  "/news",
+  "/contact",
+];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const site = getSiteUrl();

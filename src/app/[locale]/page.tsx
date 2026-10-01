@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { BrandLogo } from "@/components/BrandLogo";
+import { ClientDirectoryGrid } from "@/components/ClientDirectoryGrid";
 import { GhostButton, PrimaryButton, SectionHeading } from "@/components/ui";
 import { HeroVideo } from "@/components/HeroVideo";
 import { getDictionary } from "@/i18n/dictionaries";
@@ -65,7 +66,7 @@ export default async function HomePage({
           <h1 className="rise-delay mt-8 max-w-2xl whitespace-pre-line font-display text-3xl font-semibold leading-snug md:text-[2.75rem]">
             {dict.hero.headline}
           </h1>
-          <p className="rise-delay-2 mt-5 max-w-xl text-[15px] leading-7 text-white/85 md:text-base">
+          <p className="rise-delay-2 mt-5 max-w-2xl break-keep text-[15px] leading-7 text-white/85 md:text-base">
             {dict.hero.subheadline}
           </p>
           <div className="rise-delay-2 mt-9 flex flex-wrap gap-3">
@@ -107,47 +108,26 @@ export default async function HomePage({
 
       <section className="border-y border-line bg-paper px-5 py-16">
         <div className="mx-auto max-w-6xl">
-          <SectionHeading
-            title={dict.home.clientsTitle}
-            description={dict.home.clientsDesc}
-          />
+          <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
+            <SectionHeading
+              title={dict.home.clientsTitle}
+              description={dict.home.clientsDesc}
+            />
+            <Link
+              href={`${base}/clients`}
+              className="link-underline mb-2 text-sm font-semibold text-brand"
+            >
+              {dict.home.viewAll}
+            </Link>
+          </div>
           {clients.length > 0 ? (
-            <ul className="grid gap-x-8 gap-y-3 sm:grid-cols-2">
-              {clients.map((client) => (
-                <li
-                  key={client.id}
-                  className="flex items-center gap-3 border-b border-line py-3"
-                >
-                  {client.logoUrl ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
-                      src={client.logoUrl}
-                      alt=""
-                      className="h-9 w-9 shrink-0 object-contain"
-                    />
-                  ) : (
-                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand/10 text-[11px] font-semibold text-brand">
-                      {client.name.slice(0, 1)}
-                    </span>
-                  )}
-                  <div className="min-w-0">
-                    <p className="truncate text-[13px] font-medium text-ink">
-                      {client.name}
-                    </p>
-                    {(client.location.trim() || client.note.trim()) && (
-                      <p className="mt-0.5 truncate text-[11px] text-muted">
-                        {[client.location, client.note]
-                          .map((v) => v.trim())
-                          .filter(Boolean)
-                          .join(" · ")}
-                      </p>
-                    )}
-                  </div>
-                </li>
-              ))}
-            </ul>
+            <ClientDirectoryGrid
+              clients={clients.slice(0, 10)}
+              emptyLabel={dict.clientsPage.emptyLabel}
+              noLogoLabel={dict.clientsPage.noLogoLabel}
+            />
           ) : (
-            <p className="text-sm text-muted">등록된 고객사가 없습니다.</p>
+            <p className="text-sm text-muted">{dict.clientsPage.emptyLabel}</p>
           )}
         </div>
       </section>
@@ -176,7 +156,8 @@ export default async function HomePage({
                   {service.description}
                 </p>
                 <p className="mt-4 text-[13px] leading-6 text-ink-soft">
-                  {service.items.join(" · ")}
+                  {service.items.slice(0, 6).join(" · ")}
+                  {service.items.length > 6 ? " · …" : ""}
                 </p>
               </article>
             ))}

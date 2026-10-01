@@ -30,9 +30,6 @@ export default async function AboutPage({
   const team = [...data.team]
     .filter((m) => m.published)
     .sort((a, b) => a.order - b.order);
-  const clients = [...data.clients]
-    .filter((c) => c.published)
-    .sort((a, b) => a.order - b.order);
 
   return (
     <div className="bg-paper">
@@ -130,34 +127,6 @@ export default async function AboutPage({
         </section>
       )}
 
-      {clients.length > 0 && (
-        <section className="bg-paper px-5 py-14">
-          <div className="mx-auto max-w-6xl">
-            <SectionHeading
-              title={dict.home.clientsTitle}
-              description={dict.home.clientsDesc}
-            />
-            <ul className="grid gap-x-8 gap-y-2 sm:grid-cols-2">
-              {clients.map((client) => (
-                <li
-                  key={client.id}
-                  className="flex items-baseline justify-between gap-3 border-b border-line py-2.5"
-                >
-                  <span className="text-[13px] font-medium text-ink">
-                    {client.name}
-                  </span>
-                  {client.location.trim() ? (
-                    <span className="shrink-0 text-[11px] text-muted">
-                      {client.location}
-                    </span>
-                  ) : null}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </section>
-      )}
-
       <section className="bg-paper px-5 py-20">
         <div className="mx-auto max-w-6xl">
           <SectionHeading
@@ -186,7 +155,12 @@ export default async function AboutPage({
             {[
               [dict.aboutPage.labels.company, dict.brandName],
               [dict.aboutPage.labels.founded, dict.company.founded],
-              [dict.aboutPage.labels.address, dict.company.address],
+              [dict.contactPage.registrationOffice, dict.company.address],
+              [dict.contactPage.apFactoryOffice, dict.company.apAddress],
+              [
+                dict.contactPage.koreaOffice,
+                `${dict.company.koreaAddress}\n${dict.company.koreaBizInfo}`,
+              ],
               [dict.aboutPage.labels.email, dict.company.email],
             ].map(([label, value]) => (
               <div
@@ -194,7 +168,9 @@ export default async function AboutPage({
                 className="grid gap-1 border-b border-line py-4 sm:grid-cols-[140px_1fr] sm:gap-6"
               >
                 <dt className="text-sm font-semibold text-ink">{label}</dt>
-                <dd className="text-[15px] text-muted">{value}</dd>
+                <dd className="whitespace-pre-line text-[15px] text-muted">
+                  {value}
+                </dd>
               </div>
             ))}
           </dl>

@@ -2,30 +2,16 @@ import { NextResponse } from "next/server";
 import { v4 as uuid } from "uuid";
 import { getAdminSession } from "@/lib/auth";
 import { readStore, updateStore } from "@/lib/store";
-import { toNameCase } from "@/lib/text";
-import type { ProjectItem } from "@/lib/types";
+import type { GalleryItem } from "@/lib/types";
 
-function titleProject(
-  body: Omit<ProjectItem, "id"> & { id?: string }
-): Omit<ProjectItem, "id"> {
-  return {
-    year: body.year ?? "",
-    month: toNameCase(body.month || ""),
-    place: toNameCase(body.place || ""),
-    relatedAuto: toNameCase(body.relatedAuto || ""),
-    customer: toNameCase(body.customer || ""),
-    workType: toNameCase(body.workType || ""),
-    manufacturing: toNameCase(body.manufacturing || ""),
-    workDetail: toNameCase(body.workDetail || ""),
-    projectName: toNameCase(body.projectName || ""),
-    published: Boolean(body.published),
-    featured: Boolean(body.featured),
-  };
-}
-
-export async function GET() {
+export async function GET(request: Request) {
+  const { searchParams } = new URL(request.url);
+  const all = searchParams.get("all") === "1";
   const data = await readStore();
-  return NextResponse.json(data.projects);
+  const gallery = [...data.gallery]
+    .filter((item) => (all ? true : item.published))
+    .sort((a, b) => a.order - b.order);
+  return NextResponse.json(gallery);
 }
 
 export async function POST(request: Request) {
@@ -34,11 +20,20 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const body = (await request.json()) as Omit<ProjectItem, "id">;
-  const item: ProjectItem = { ...titleProject(body), id: uuid() };
+  const body = (await request.json()) as Omit<GalleryItem, "id">;
+  const item: GalleryItem = {
+    ...body,
+    id: uuid(),
+    title: body.title ?? "",
+    description: body.description ?? "",
+    imageUrl: body.imageUrl ?? "",
+    order: Number(body.order) || 1,
+    published: Boolean(body.published),
+  };
+
   await updateStore((data) => ({
     ...data,
-    projects: [item, ...data.projects],
+    gallery: [...data.gallery, item].sort((a, b) => a.order - b.order),
   }));
   return NextResponse.json(item, { status: 201 });
 }
@@ -49,11 +44,12 @@ export async function PUT(request: Request) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const body = (await request.json()) as ProjectItem;
-  const item: ProjectItem = { ...titleProject(body), id: body.id };
+  const item = (await request.json()) as GalleryItem;
   await updateStore((data) => ({
     ...data,
-    projects: data.projects.map((p) => (p.id === item.id ? item : p)),
+    gallery: data.gallery
+      .map((g) => (g.id === item.id ? item : g))
+      .sort((a, b) => a.order - b.order),
   }));
   return NextResponse.json({ ok: true });
 }
@@ -72,7 +68,7 @@ export async function DELETE(request: Request) {
 
   await updateStore((data) => ({
     ...data,
-    projects: data.projects.filter((p) => p.id !== id),
+    gallery: data.gallery.filter((g) => g.id !== id),
   }));
   return NextResponse.json({ ok: true });
 }

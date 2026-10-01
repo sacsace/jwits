@@ -6,6 +6,8 @@ export type Dictionary = {
     about: string;
     services: string;
     projects: string;
+    clients: string;
+    gallery: string;
     news: string;
     contact: string;
   };
@@ -67,6 +69,21 @@ export type Dictionary = {
     emptyLabel: string;
     resultLabel: string;
   };
+  galleryPage: {
+    title: string;
+    description: string;
+    gridTitle: string;
+    emptyLabel: string;
+  };
+  clientsPage: {
+    title: string;
+    description: string;
+    eyebrow: string;
+    directoryTitle: string;
+    directoryDesc: string;
+    emptyLabel: string;
+    noLogoLabel: string;
+  };
   newsPage: {
     title: string;
     updatesTitle: string;
@@ -77,6 +94,9 @@ export type Dictionary = {
     formTitle: string;
     formDesc: string;
     address: string;
+    registrationOffice: string;
+    apFactoryOffice: string;
+    koreaOffice: string;
     phone: string;
     email: string;
     fax: string;
@@ -101,6 +121,9 @@ export type Dictionary = {
     description: string;
     founded: string;
     address: string;
+    apAddress: string;
+    koreaAddress: string;
+    koreaBizInfo: string;
     phone: string;
     email: string;
     fax: string;
@@ -127,6 +150,8 @@ const ko: Dictionary = {
     about: "회사소개",
     services: "사업영역",
     projects: "실적",
+    clients: "고객사",
+    gallery: "갤러리",
     news: "뉴스",
     contact: "문의",
   },
@@ -146,7 +171,7 @@ const ko: Dictionary = {
       "인도 완성차·부품 파트너와 함께 설계부터 검증까지 실무 과제를 수행합니다.",
     servicesTitle: "사업 영역",
     servicesDesc:
-      "설계부터 검증까지, 개발 과정에서 필요한 엔지니어링을 이어서 지원합니다.",
+      "산업용 소모품, 기계 엔지니어링, 제작·제조 영역에서 실무형 지원을 제공합니다.",
     viewAll: "전체 보기",
     projectsTitle: "주요 실적",
     projectsDesc: "기아자동차를 중심으로 수행한 최근 프로젝트입니다.",
@@ -182,9 +207,10 @@ const ko: Dictionary = {
   servicesPage: {
     title: "사업 영역",
     description:
-      "설계·해석·시험·공정까지, 모빌리티 개발에 필요한 엔지니어링을 지원합니다.",
+      "산업용 소모품, 기계 엔지니어링, 제작·제조까지 JWITS의 핵심 사업 영역을 소개합니다.",
     coreTitle: "핵심 서비스",
-    coreDesc: "완성차 품질 기준에 맞춘 실무형 엔지니어링을 제공합니다.",
+    coreDesc:
+      "Project Director JW Lee 지휘 아래 산업용 소모품·기계 엔지니어링·제작 제조 영역을 통합 지원합니다.",
   },
   projectsPage: {
     title: "수행 실적",
@@ -194,6 +220,23 @@ const ko: Dictionary = {
     searchPlaceholder: "연도, 고객, 프로젝트명 검색",
     emptyLabel: "검색 결과가 없습니다.",
     resultLabel: "{filtered} / {total}건",
+  },
+  galleryPage: {
+    title: "갤러리",
+    description: "현장과 프로젝트 활동을 사진으로 소개합니다.",
+    gridTitle: "사진 갤러리",
+    emptyLabel: "등록된 사진이 없습니다.",
+  },
+  clientsPage: {
+    title: "고객사",
+    description:
+      "글로벌 완성차·부품 파트너와 함께 설계부터 검증까지 신뢰할 수 있는 기술력을 쌓아왔습니다.",
+    eyebrow: "Directory",
+    directoryTitle: "주요 고객사",
+    directoryDesc:
+      "JW Industrial Tech Services와 함께한 주요 고객사입니다. 로고와 함께 확인하실 수 있습니다.",
+    emptyLabel: "등록된 고객사가 없습니다.",
+    noLogoLabel: "로고 없음",
   },
   newsPage: {
     title: "뉴스·공지",
@@ -205,6 +248,9 @@ const ko: Dictionary = {
     formTitle: "프로젝트 문의",
     formDesc: "과제 범위와 일정을 알려주시면 확인 후 회신드립니다.",
     address: "주소",
+    registrationOffice: "Registration Office",
+    apFactoryOffice: "AP 공장 · 사무실",
+    koreaOffice: "한국 지사",
     phone: "전화",
     email: "이메일",
     fax: "팩스",
@@ -232,6 +278,11 @@ const ko: Dictionary = {
     founded: "2012",
     address:
       "24/1, 1st Floor Makers Hotel Biz 120 Doddanekundi, Marathalli Ferns City Road, Bengaluru, Bangalore KA 560037",
+    apAddress:
+      "Anantapur Fabrication Plant: Gana Saai Industries Industrial Estate, Pilligundla, Anantapur, Andhra Pradesh 515001, India",
+    koreaAddress:
+      "18611 경기도 화성시 향남읍 2774번길 61 모아엘가 803동 1004호",
+    koreaBizInfo: "사업자등록번호 279-35-01121 (전자세금용: woojinindia@outlook.com)",
     phone: "031-8015-9200",
     email: "lee@jwits.co.kr",
     fax: "031-8015-9201",
@@ -270,39 +321,94 @@ const ko: Dictionary = {
   ],
   services: [
     {
-      id: "design",
-      title: "기계 설계",
+      id: "consumables",
+      title: "Industrial Consumables",
       description:
-        "차체·샤시·의장 부품의 컨셉부터 상세 설계까지, 양산성을 고려한 설계를 수행합니다.",
-      items: ["DFM/DFA 검토", "공차·체결 설계", "도면 표준화"],
+        "인증 유통·딜러십을 기반으로 시장 조사부터 품질 납품까지 산업용 소모품 사업을 수행합니다.",
+      items: [
+        "Authorized Distributor Certificate",
+        "Dealership Contract",
+        "Agency Contract",
+        "Market Research",
+        "Research & Development",
+        "Cost Down Cost Investigation",
+        "Quality Delivery",
+      ],
     },
     {
-      id: "cae",
-      title: "구조·내구 해석",
+      id: "machinery",
+      title: "Machinery Engineering",
       description:
-        "정적/동적 하중, 충돌·진동·피로 해석을 통해 설계 단계의 리스크를 조기에 제거합니다.",
-      items: ["구조 해석", "NVH 해석", "피로·내구 해석", "경량화 최적화"],
+        "프로젝트 기획부터 설치·이설·유지보수와 품질 관리·엔지니어 공급까지 기계 엔지니어링을 제공합니다.",
+      items: [
+        "Project Planning",
+        "Machinery Installation",
+        "In-land Transportation",
+        "Unloading & Unpacking",
+        "Installation & Erection",
+        "Dismantle",
+        "Repairing & Maintenance",
+        "Assistant Help, A/S",
+        "Parts Trading",
+        "Korean Quality Management",
+        "Coordinator",
+        "Leading & Control",
+        "Project Supervision",
+        "Mechanical / Electrical Engineer Supply",
+        "Press, Assembly, Body Paint Shop Engineering",
+        "Mechanical",
+        "Electrical",
+      ],
     },
     {
-      id: "test",
-      title: "시험·검증",
+      id: "fabrication",
+      title: "Machine Fabrication & Manufacturing",
       description:
-        "시제품 평가와 시험 계획 수립부터 결과 리포팅까지 개발 검증을 지원합니다.",
-      items: ["시험 계획 수립", "시제품 평가", "고장 분석", "개선안 도출"],
+        "도면 개발부터 랙·알루미늄·철골 제작까지 현장 맞춤 제작·제조를 수행합니다.",
+      items: [
+        "Research & Development",
+        "Drawing & Development",
+        "Rack, Step, Pallet",
+        "Aluminum Fabrication",
+        "H-Beam Flooring",
+        "Safety Fence, Door, Jig",
+        "Steel Fabrication",
+      ],
     },
     {
-      id: "process",
-      title: "공정·설비 엔지니어링",
+      id: "site-hse",
+      title: "Site Operation & Hse",
       description:
-        "양산 전환을 위한 공정 설계와 지그·설비 엔지니어링으로 생산 안정성을 높입니다.",
-      items: ["공정 레이아웃", "지그·치구 설계", "작업성 검토", "양산 이슈 대응"],
+        "일일 작업 계획·현장 지원부터 안전·보건·환경 관리까지 사이트 운영을 지원합니다.",
+      items: [
+        "Create A Daily Work Plan",
+        "Check In And Out",
+        "Check Incoming Items",
+        "Check Work Flow",
+        "Commissioning Response",
+        "Production Response",
+        "Customer Support",
+        "Tool Room Managing",
+        "Site Support",
+        "People Plan",
+        "Hazard Identification",
+        "Daily Safety And Health Training",
+        "Work Time Planning",
+        "Trial Run And Mass Production",
+        "Stretching Before & After Work",
+        "Conduct Safety Training",
+        "Prevention Of Safety Accidents Between Work",
+        "Prevention Of Pollution For Work",
+        "Prevention Of Work Condition",
+        "Prevention Of Covid-19 Infection",
+      ],
     },
   ],
   projects: {
     p1: {
       title: "전기차 차체 구조 경량화 설계",
       client: "기아자동차",
-      category: "기계 설계",
+      category: "기계 설치",
       description:
         "전기차 차체 주요 멤버의 경량화와 강성 목표를 동시에 만족하는 설계안을 도출했습니다.",
     },
@@ -370,6 +476,8 @@ const en: Dictionary = {
     about: "About",
     services: "Services",
     projects: "Projects",
+    clients: "Clients",
+    gallery: "Gallery",
     news: "News",
     contact: "Contact",
   },
@@ -389,7 +497,7 @@ const en: Dictionary = {
       "We work with OEM and parts partners across India from design through validation.",
     servicesTitle: "Services",
     servicesDesc:
-      "From design through validation, we support the engineering needed across development.",
+      "Practical support across industrial consumables, machinery engineering, and fabrication.",
     viewAll: "View all",
     projectsTitle: "Featured projects",
     projectsDesc: "Recent work centered on partnerships with Kia Motors.",
@@ -426,9 +534,10 @@ const en: Dictionary = {
   servicesPage: {
     title: "Services",
     description:
-      "We support the engineering needed for mobility development — design, analysis, testing, and process.",
+      "Explore JWITS core areas across industrial consumables, machinery engineering, and fabrication.",
     coreTitle: "Core services",
-    coreDesc: "Hands-on engineering aligned with OEM quality standards.",
+    coreDesc:
+      "Under Project Director JW Lee, we deliver consumables, machinery engineering, and fabrication support.",
   },
   projectsPage: {
     title: "Projects",
@@ -438,6 +547,23 @@ const en: Dictionary = {
     searchPlaceholder: "Search year, client, project name",
     emptyLabel: "No matching projects.",
     resultLabel: "{filtered} / {total}",
+  },
+  galleryPage: {
+    title: "Gallery",
+    description: "Photos from our field work and project activities.",
+    gridTitle: "Photo gallery",
+    emptyLabel: "No photos have been published yet.",
+  },
+  clientsPage: {
+    title: "Clients",
+    description:
+      "We have built trusted capabilities from design through validation with global OEM and parts partners.",
+    eyebrow: "Directory",
+    directoryTitle: "Major clients",
+    directoryDesc:
+      "Key partners of JW Industrial Tech Services, shown with their logos.",
+    emptyLabel: "No clients have been published yet.",
+    noLogoLabel: "No logo",
   },
   newsPage: {
     title: "News",
@@ -449,6 +575,9 @@ const en: Dictionary = {
     formTitle: "Project inquiry",
     formDesc: "Share scope and schedule, and we will get back to you.",
     address: "Address",
+    registrationOffice: "Registration Office",
+    apFactoryOffice: "AP Factory & Office",
+    koreaOffice: "Korea Office",
     phone: "Phone",
     email: "Email",
     fax: "Fax",
@@ -476,6 +605,12 @@ const en: Dictionary = {
     founded: "2012",
     address:
       "24/1, 1st Floor Makers Hotel Biz 120 Doddanekundi, Marathalli Ferns City Road, Bengaluru, Bangalore KA 560037",
+    apAddress:
+      "Anantapur Fabrication Plant: Gana Saai Industries Industrial Estate, Pilligundla, Anantapur, Andhra Pradesh 515001, India",
+    koreaAddress:
+      "803-#1004, Sangsin-Hagil-ro 274-61, Hyangnam-eup, Hwaseong-si, Gyeonggi-do 18611, Korea",
+    koreaBizInfo:
+      "Korea legal entity (sole proprietorship) · Business Reg. No. 279-35-01121 (e-tax: woojinindia@outlook.com)",
     phone: "031-8015-9200",
     email: "lee@jwits.co.kr",
     fax: "031-8015-9201",
@@ -514,39 +649,94 @@ const en: Dictionary = {
   ],
   services: [
     {
-      id: "design",
-      title: "Mechanical design",
+      id: "consumables",
+      title: "Industrial Consumables",
       description:
-        "From concept to detailed design for body, chassis, and trim parts with manufacturability in focus.",
-      items: ["DFM/DFA review", "Tolerance & fastening design", "Drawing standardization"],
+        "From authorized distribution and dealerships to market research and quality delivery for industrial consumables.",
+      items: [
+        "Authorized Distributor Certificate",
+        "Dealership Contract",
+        "Agency Contract",
+        "Market Research",
+        "Research & Development",
+        "Cost Down Cost Investigation",
+        "Quality Delivery",
+      ],
     },
     {
-      id: "cae",
-      title: "Structural & durability CAE",
+      id: "machinery",
+      title: "Machinery Engineering",
       description:
-        "Static/dynamic load, crash, vibration, and fatigue analysis to remove risk early.",
-      items: ["Structural analysis", "NVH analysis", "Fatigue & durability", "Lightweight optimization"],
+        "End-to-end machinery engineering from project planning and installation through maintenance, quality control, and engineer supply.",
+      items: [
+        "Project Planning",
+        "Machinery Installation",
+        "In-land Transportation",
+        "Unloading & Unpacking",
+        "Installation & Erection",
+        "Dismantle",
+        "Repairing & Maintenance",
+        "Assistant Help, A/S",
+        "Parts Trading",
+        "Korean Quality Management",
+        "Coordinator",
+        "Leading & Control",
+        "Project Supervision",
+        "Mechanical / Electrical Engineer Supply",
+        "Press, Assembly, Body Paint Shop Engineering",
+        "Mechanical",
+        "Electrical",
+      ],
     },
     {
-      id: "test",
-      title: "Testing & validation",
+      id: "fabrication",
+      title: "Machine Fabrication & Manufacturing",
       description:
-        "We support development validation from prototype evaluation and test planning through reporting.",
-      items: ["Test planning", "Prototype evaluation", "Failure analysis", "Improvement proposals"],
+        "Custom fabrication and manufacturing from drawing development to racks, aluminum, and steel structures.",
+      items: [
+        "Research & Development",
+        "Drawing & Development",
+        "Rack, Step, Pallet",
+        "Aluminum Fabrication",
+        "H-Beam Flooring",
+        "Safety Fence, Door, Jig",
+        "Steel Fabrication",
+      ],
     },
     {
-      id: "process",
-      title: "Process & tooling engineering",
+      id: "site-hse",
+      title: "Site Operation & Hse",
       description:
-        "Process design and jig/equipment engineering to stabilize production ramp-up.",
-      items: ["Process layout", "Jig & fixture design", "Workability review", "Mass-production issue response"],
+        "Daily planning and site support through safety, health, and environmental management on site.",
+      items: [
+        "Create A Daily Work Plan",
+        "Check In And Out",
+        "Check Incoming Items",
+        "Check Work Flow",
+        "Commissioning Response",
+        "Production Response",
+        "Customer Support",
+        "Tool Room Managing",
+        "Site Support",
+        "People Plan",
+        "Hazard Identification",
+        "Daily Safety And Health Training",
+        "Work Time Planning",
+        "Trial Run And Mass Production",
+        "Stretching Before & After Work",
+        "Conduct Safety Training",
+        "Prevention Of Safety Accidents Between Work",
+        "Prevention Of Pollution For Work",
+        "Prevention Of Work Condition",
+        "Prevention Of Covid-19 Infection",
+      ],
     },
   ],
   projects: {
     p1: {
       title: "EV body structure lightweight design",
       client: "Kia Motors",
-      category: "Mechanical design",
+      category: "Mechanical installation",
       description:
         "Delivered design options meeting both weight and stiffness targets for key EV body members.",
     },
@@ -614,6 +804,8 @@ const zh: Dictionary = {
     about: "公司介绍",
     services: "业务领域",
     projects: "业绩",
+    clients: "客户",
+    gallery: "图库",
     news: "新闻",
     contact: "咨询",
   },
@@ -631,7 +823,7 @@ const zh: Dictionary = {
     clientsTitle: "主要客户",
     clientsDesc: "与整车及零部件伙伴合作，从设计到验证持续支持实务课题。",
     servicesTitle: "业务领域",
-    servicesDesc: "从设计到验证，连贯支持开发过程所需的工程工作。",
+    servicesDesc: "覆盖工业耗材、机械工程与制作制造的实务支持。",
     viewAll: "查看全部",
     projectsTitle: "主要业绩",
     projectsDesc: "以起亚汽车为中心开展的近期项目。",
@@ -665,9 +857,10 @@ const zh: Dictionary = {
   },
   servicesPage: {
     title: "业务领域",
-    description: "从设计、解析、试验到工艺，支持出行开发所需工程。",
+    description: "介绍 JWITS 在工业耗材、机械工程与制作制造方面的核心业务。",
     coreTitle: "核心服务",
-    coreDesc: "提供符合整车质量标准的实务型工程服务。",
+    coreDesc:
+      "在 Project Director JW Lee 指导下，统筹工业耗材、机械工程与制作制造业务。",
   },
   projectsPage: {
     title: "项目业绩",
@@ -676,6 +869,21 @@ const zh: Dictionary = {
     searchPlaceholder: "搜索年份、客户、项目名称",
     emptyLabel: "没有匹配的项目。",
     resultLabel: "{filtered} / {total}",
+  },
+  galleryPage: {
+    title: "图库",
+    description: "展示现场与项目活动照片。",
+    gridTitle: "照片图库",
+    emptyLabel: "暂无已发布照片。",
+  },
+  clientsPage: {
+    title: "客户",
+    description: "我们与全球整车及零部件伙伴合作，积累了从设计到验证的可靠技术能力。",
+    eyebrow: "Directory",
+    directoryTitle: "主要客户",
+    directoryDesc: "JW Industrial Tech Services 的主要客户，可查看公司标志。",
+    emptyLabel: "暂无已发布客户。",
+    noLogoLabel: "暂无标志",
   },
   newsPage: {
     title: "新闻公告",
@@ -687,6 +895,9 @@ const zh: Dictionary = {
     formTitle: "项目咨询",
     formDesc: "请告知课题范围与日程，我们将尽快回复。",
     address: "地址",
+    registrationOffice: "Registration Office",
+    apFactoryOffice: "AP 工厂 · 办公室",
+    koreaOffice: "韩国分公司",
     phone: "电话",
     email: "邮箱",
     fax: "传真",
@@ -713,6 +924,12 @@ const zh: Dictionary = {
     founded: "2012",
     address:
       "24/1, 1st Floor Makers Hotel Biz 120 Doddanekundi, Marathalli Ferns City Road, Bengaluru, Bangalore KA 560037",
+    apAddress:
+      "Anantapur Fabrication Plant: Gana Saai Industries Industrial Estate, Pilligundla, Anantapur, Andhra Pradesh 515001, India",
+    koreaAddress:
+      "803-#1004, Sangsin-Hagil-ro 274-61, Hyangnam-eup, Hwaseong-si, Gyeonggi-do 18611, Korea",
+    koreaBizInfo:
+      "韩国法人（个人事业者）· 事业者登记号 279-35-01121（电子税务: woojinindia@outlook.com）",
     phone: "031-8015-9200",
     email: "lee@jwits.co.kr",
     fax: "031-8015-9201",
@@ -748,35 +965,90 @@ const zh: Dictionary = {
   ],
   services: [
     {
-      id: "design",
-      title: "机械设计",
-      description: "从车身、底盘与内饰零件概念到详细设计，兼顾量产性。",
-      items: ["DFM/DFA 审查", "公差与紧固设计", "图纸标准化"],
+      id: "consumables",
+      title: "Industrial Consumables",
+      description: "以授权经销为基础，覆盖市场调研到质量交付的工业耗材业务。",
+      items: [
+        "Authorized Distributor Certificate",
+        "Dealership Contract",
+        "Agency Contract",
+        "Market Research",
+        "Research & Development",
+        "Cost Down Cost Investigation",
+        "Quality Delivery",
+      ],
     },
     {
-      id: "cae",
-      title: "结构与耐久解析",
-      description: "通过静/动态载荷、碰撞、振动与疲劳解析，尽早消除设计风险。",
-      items: ["结构解析", "NVH 解析", "疲劳与耐久解析", "轻量化优化"],
+      id: "machinery",
+      title: "Machinery Engineering",
+      description: "从项目策划、安装与维护到质量管理与工程师派遣的机械工程服务。",
+      items: [
+        "Project Planning",
+        "Machinery Installation",
+        "In-land Transportation",
+        "Unloading & Unpacking",
+        "Installation & Erection",
+        "Dismantle",
+        "Repairing & Maintenance",
+        "Assistant Help, A/S",
+        "Parts Trading",
+        "Korean Quality Management",
+        "Coordinator",
+        "Leading & Control",
+        "Project Supervision",
+        "Mechanical / Electrical Engineer Supply",
+        "Press, Assembly, Body Paint Shop Engineering",
+        "Mechanical",
+        "Electrical",
+      ],
     },
     {
-      id: "test",
-      title: "试验与验证",
-      description: "从样件评估、试验计划到结果报告，支持开发验证。",
-      items: ["试验计划", "样件评估", "故障分析", "改进方案"],
+      id: "fabrication",
+      title: "Machine Fabrication & Manufacturing",
+      description: "从图纸开发到货架、铝材与钢结构的现场定制制作制造。",
+      items: [
+        "Research & Development",
+        "Drawing & Development",
+        "Rack, Step, Pallet",
+        "Aluminum Fabrication",
+        "H-Beam Flooring",
+        "Safety Fence, Door, Jig",
+        "Steel Fabrication",
+      ],
     },
     {
-      id: "process",
-      title: "工艺与设备工程",
-      description: "通过工艺设计与夹具/设备工程，提升量产转换稳定性。",
-      items: ["工艺布局", "夹具设计", "作业性审查", "量产问题应对"],
+      id: "site-hse",
+      title: "Site Operation & Hse",
+      description: "从每日作业计划与现场支持到安全、健康与环境管理的现场运营服务。",
+      items: [
+        "Create A Daily Work Plan",
+        "Check In And Out",
+        "Check Incoming Items",
+        "Check Work Flow",
+        "Commissioning Response",
+        "Production Response",
+        "Customer Support",
+        "Tool Room Managing",
+        "Site Support",
+        "People Plan",
+        "Hazard Identification",
+        "Daily Safety And Health Training",
+        "Work Time Planning",
+        "Trial Run And Mass Production",
+        "Stretching Before & After Work",
+        "Conduct Safety Training",
+        "Prevention Of Safety Accidents Between Work",
+        "Prevention Of Pollution For Work",
+        "Prevention Of Work Condition",
+        "Prevention Of Covid-19 Infection",
+      ],
     },
   ],
   projects: {
     p1: {
       title: "电动车车身结构轻量化设计",
       client: "起亚汽车",
-      category: "机械设计",
+      category: "机械安装",
       description: "为电动车车身主要构件提出同时满足轻量与刚度目标的设计方案。",
     },
     p2: {
@@ -836,6 +1108,8 @@ const ja: Dictionary = {
     about: "会社紹介",
     services: "事業領域",
     projects: "実績",
+    clients: "取引先",
+    gallery: "ギャラリー",
     news: "ニュース",
     contact: "お問い合わせ",
   },
@@ -854,7 +1128,8 @@ const ja: Dictionary = {
     clientsDesc:
       "完成車・部品パートナーとともに、設計から検証まで実務課題に対応します。",
     servicesTitle: "事業領域",
-    servicesDesc: "設計から検証まで、開発に必要なエンジニアリングを一貫して支援します。",
+    servicesDesc:
+      "産業用消耗品、機械エンジニアリング、製作・製造領域で実務支援を提供します。",
     viewAll: "すべて見る",
     projectsTitle: "主な実績",
     projectsDesc: "起亜自動車を中心に実施した最近のプロジェクトです。",
@@ -889,9 +1164,11 @@ const ja: Dictionary = {
   },
   servicesPage: {
     title: "事業領域",
-    description: "設計・解析・試験・工程まで、モビリティ開発に必要なエンジニアリングを支援します。",
+    description:
+      "産業用消耗品、機械エンジニアリング、製作・製造までの JWITS コア事業をご紹介します。",
     coreTitle: "コアサービス",
-    coreDesc: "完成車品質基準に沿った実務型エンジニアリングを提供します。",
+    coreDesc:
+      "Project Director JW Lee の下で、消耗品・機械エンジニアリング・製作製造を一体支援します。",
   },
   projectsPage: {
     title: "実績",
@@ -900,6 +1177,23 @@ const ja: Dictionary = {
     searchPlaceholder: "年・顧客・プロジェクト名で検索",
     emptyLabel: "該当するプロジェクトがありません。",
     resultLabel: "{filtered} / {total}",
+  },
+  galleryPage: {
+    title: "ギャラリー",
+    description: "現場とプロジェクト活動の写真をご紹介します。",
+    gridTitle: "フォトギャラリー",
+    emptyLabel: "公開中の写真はまだありません。",
+  },
+  clientsPage: {
+    title: "取引先",
+    description:
+      "グローバル完成車・部品パートナーとともに、設計から検証まで信頼できる技術力を積み重ねてきました。",
+    eyebrow: "Directory",
+    directoryTitle: "主要取引先",
+    directoryDesc:
+      "JW Industrial Tech Services の主要取引先をロゴとともにご紹介します。",
+    emptyLabel: "公開中の取引先はまだありません。",
+    noLogoLabel: "ロゴなし",
   },
   newsPage: {
     title: "ニュース・お知らせ",
@@ -911,6 +1205,9 @@ const ja: Dictionary = {
     formTitle: "プロジェクト相談",
     formDesc: "課題範囲とスケジュールをお知らせください。確認のうえご返信します。",
     address: "住所",
+    registrationOffice: "Registration Office",
+    apFactoryOffice: "AP 工場 · 事務所",
+    koreaOffice: "韓国支社",
     phone: "電話",
     email: "メール",
     fax: "FAX",
@@ -937,6 +1234,12 @@ const ja: Dictionary = {
     founded: "2012",
     address:
       "24/1, 1st Floor Makers Hotel Biz 120 Doddanekundi, Marathalli Ferns City Road, Bengaluru, Bangalore KA 560037",
+    apAddress:
+      "Anantapur Fabrication Plant: Gana Saai Industries Industrial Estate, Pilligundla, Anantapur, Andhra Pradesh 515001, India",
+    koreaAddress:
+      "803-#1004, Sangsin-Hagil-ro 274-61, Hyangnam-eup, Hwaseong-si, Gyeonggi-do 18611, Korea",
+    koreaBizInfo:
+      "韓国法人（個人事業）· 事業者登録番号 279-35-01121（電子税務: woojinindia@outlook.com）",
     phone: "031-8015-9200",
     email: "lee@jwits.co.kr",
     fax: "031-8015-9201",
@@ -972,35 +1275,94 @@ const ja: Dictionary = {
   ],
   services: [
     {
-      id: "design",
-      title: "機械設計",
-      description: "車体・シャシー・内装部品のコンセプトから詳細設計まで、量産性を考慮して対応します。",
-      items: ["DFM/DFA検討", "公差・締結設計", "図面標準化"],
+      id: "consumables",
+      title: "Industrial Consumables",
+      description:
+        "認証販売網を基盤に、市場調査から品質納品まで産業用消耗品事業を展開します。",
+      items: [
+        "Authorized Distributor Certificate",
+        "Dealership Contract",
+        "Agency Contract",
+        "Market Research",
+        "Research & Development",
+        "Cost Down Cost Investigation",
+        "Quality Delivery",
+      ],
     },
     {
-      id: "cae",
-      title: "構造・耐久解析",
-      description: "静的/動的荷重、衝突・振動・疲労解析により、設計段階のリスクを早期に除去します。",
-      items: ["構造解析", "NVH解析", "疲労・耐久解析", "軽量化最適化"],
+      id: "machinery",
+      title: "Machinery Engineering",
+      description:
+        "プロジェクト企画から据付・移設・保全、品質管理・エンジニア供給まで機械エンジニアリングを提供します。",
+      items: [
+        "Project Planning",
+        "Machinery Installation",
+        "In-land Transportation",
+        "Unloading & Unpacking",
+        "Installation & Erection",
+        "Dismantle",
+        "Repairing & Maintenance",
+        "Assistant Help, A/S",
+        "Parts Trading",
+        "Korean Quality Management",
+        "Coordinator",
+        "Leading & Control",
+        "Project Supervision",
+        "Mechanical / Electrical Engineer Supply",
+        "Press, Assembly, Body Paint Shop Engineering",
+        "Mechanical",
+        "Electrical",
+      ],
     },
     {
-      id: "test",
-      title: "試験・検証",
-      description: "試作品評価と試験計画の策定から結果報告まで、開発検証を支援します。",
-      items: ["試験計画策定", "試作品評価", "故障分析", "改善案提示"],
+      id: "fabrication",
+      title: "Machine Fabrication & Manufacturing",
+      description:
+        "図面開発からラック・アルミ・鉄骨製作まで、現場向けの製作・製造を行います。",
+      items: [
+        "Research & Development",
+        "Drawing & Development",
+        "Rack, Step, Pallet",
+        "Aluminum Fabrication",
+        "H-Beam Flooring",
+        "Safety Fence, Door, Jig",
+        "Steel Fabrication",
+      ],
     },
     {
-      id: "process",
-      title: "工程・設備エンジニアリング",
-      description: "量産移行のための工程設計と治具・設備エンジニアリングで生産安定性を高めます。",
-      items: ["工程レイアウト", "治具設計", "作業性検討", "量産課題対応"],
+      id: "site-hse",
+      title: "Site Operation & Hse",
+      description:
+        "日次作業計画・現場支援から安全・衛生・環境管理まで、サイト運営を支援します。",
+      items: [
+        "Create A Daily Work Plan",
+        "Check In And Out",
+        "Check Incoming Items",
+        "Check Work Flow",
+        "Commissioning Response",
+        "Production Response",
+        "Customer Support",
+        "Tool Room Managing",
+        "Site Support",
+        "People Plan",
+        "Hazard Identification",
+        "Daily Safety And Health Training",
+        "Work Time Planning",
+        "Trial Run And Mass Production",
+        "Stretching Before & After Work",
+        "Conduct Safety Training",
+        "Prevention Of Safety Accidents Between Work",
+        "Prevention Of Pollution For Work",
+        "Prevention Of Work Condition",
+        "Prevention Of Covid-19 Infection",
+      ],
     },
   ],
   projects: {
     p1: {
       title: "EV車体構造の軽量化設計",
       client: "起亜自動車",
-      category: "機械設計",
+      category: "機械据付",
       description: "EV車体主要メンバーの軽量化と剛性目標を同時に満たす設計案を導出しました。",
     },
     p2: {

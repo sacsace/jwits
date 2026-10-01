@@ -1,27 +1,29 @@
-/** Word-wise: first letter upper, rest lower. Keeps hyphens/parentheses. */
+/** Word-wise: first letter upper, rest lower. Keeps -/~/+/& and parentheses. */
 export function toNameCase(value: string) {
   return value
     .trim()
     .replace(/\s+/g, " ")
     .split(" ")
-    .map((word) => {
-      if (!word) return word;
-      return word
-        .split("-")
-        .map((part) => {
-          if (!part) return part;
-          // keep short ALL-CAPS tokens like (KIN) handled via outer chars
-          const match = part.match(/^(\()?(.*?)(\))?$/);
-          if (!match) {
-            return part.charAt(0).toUpperCase() + part.slice(1).toLowerCase();
-          }
-          const [, open = "", core = "", close = ""] = match;
-          if (!core) return part;
-          const cased =
-            core.charAt(0).toUpperCase() + core.slice(1).toLowerCase();
-          return `${open}${cased}${close}`;
-        })
-        .join("-");
-    })
+    .map((word) => titleWord(word))
     .join(" ");
+}
+
+function titleSegment(segment: string) {
+  if (!segment) return segment;
+  const match = segment.match(/^(\()?(.*?)(\))?$/);
+  if (!match) {
+    return segment.charAt(0).toUpperCase() + segment.slice(1).toLowerCase();
+  }
+  const [, open = "", core = "", close = ""] = match;
+  if (!core) return segment;
+  const cased = core.charAt(0).toUpperCase() + core.slice(1).toLowerCase();
+  return `${open}${cased}${close}`;
+}
+
+function titleWord(word: string) {
+  if (!word) return word;
+  return word
+    .split(/([-/~+&])/)
+    .map((part) => (/^[-/~+&]$/.test(part) ? part : titleSegment(part)))
+    .join("");
 }

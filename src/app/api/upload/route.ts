@@ -1,8 +1,9 @@
 import { NextResponse } from "next/server";
 import { getAdminSession } from "@/lib/auth";
-import { saveUploadedImage } from "@/lib/upload";
+import { saveUploadedImage, saveUploadedMedia } from "@/lib/upload";
 
 export const runtime = "nodejs";
+export const maxDuration = 120;
 
 export async function POST(request: Request) {
   const session = await getAdminSession();
@@ -16,8 +17,13 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "파일이 없습니다." }, { status: 400 });
   }
 
+  const scope = String(form.get("scope") || "image");
+
   try {
-    const saved = await saveUploadedImage(file);
+    const saved =
+      scope === "media"
+        ? await saveUploadedMedia(file)
+        : await saveUploadedImage(file);
     return NextResponse.json(saved, { status: 201 });
   } catch (err) {
     const message = err instanceof Error ? err.message : "업로드 실패";

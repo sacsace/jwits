@@ -36,6 +36,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: clip;
 }
 
 body {
@@ -44,6 +45,7 @@ body {
   background: var(--paper);
   font-family: var(--font-body), "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
   -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
 }
 
 h1,
@@ -64,11 +66,9 @@ a {
   isolation: isolate;
   overflow: hidden;
   background: #1a2230;
-  width: 100vw;
+  width: 100%;
   min-height: 100vh;
   min-height: 100dvh;
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
 }
 
 .hero-photo__media {

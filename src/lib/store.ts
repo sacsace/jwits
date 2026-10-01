@@ -27,20 +27,61 @@ function normalizeClients(clients: ClientCompany[]): {
   return { clients: next, changed };
 }
 
+function normalizeProject(project: ProjectItem): ProjectItem {
+  return {
+    ...project,
+    month: toNameCase(project.month || ""),
+    place: toNameCase(project.place || ""),
+    relatedAuto: toNameCase(project.relatedAuto || ""),
+    customer: toNameCase(project.customer || ""),
+    workType: toNameCase(project.workType || ""),
+    manufacturing: toNameCase(project.manufacturing || ""),
+    workDetail: toNameCase(project.workDetail || ""),
+    projectName: toNameCase(project.projectName || ""),
+  };
+}
+
+function normalizeProjects(projects: ProjectItem[]): {
+  projects: ProjectItem[];
+  changed: boolean;
+} {
+  let changed = false;
+  const next = projects.map((project) => {
+    const normalized = normalizeProject(project);
+    if (
+      normalized.month !== project.month ||
+      normalized.place !== project.place ||
+      normalized.relatedAuto !== project.relatedAuto ||
+      normalized.customer !== project.customer ||
+      normalized.workType !== project.workType ||
+      normalized.manufacturing !== project.manufacturing ||
+      normalized.workDetail !== project.workDetail ||
+      normalized.projectName !== project.projectName
+    ) {
+      changed = true;
+    }
+    return normalized;
+  });
+  return { projects: next, changed };
+}
+
 function normalizeStore(raw: Partial<AppData>): {
   data: AppData;
   clientsChanged: boolean;
+  projectsChanged: boolean;
 } {
-  const projects = isNewProjectSchema(raw.projects)
+  const baseProjects = isNewProjectSchema(raw.projects)
     ? raw.projects
     : defaultData.projects;
 
   const { clients, changed: clientsChanged } = normalizeClients(
     raw.clients ?? defaultData.clients
   );
+  const { projects, changed: projectsChanged } = normalizeProjects(baseProjects);
 
   return {
     clientsChanged,
+    projectsChanged,
     data: {
       ...defaultData,
       ...raw,
@@ -67,6 +108,7 @@ function normalizeStore(raw: Partial<AppData>): {
       },
       team: raw.team ?? defaultData.team,
       clients,
+      gallery: raw.gallery ?? defaultData.gallery,
       news: raw.news ?? defaultData.news,
       projects,
       inquiries: raw.inquiries ?? defaultData.inquiries,
@@ -87,14 +129,17 @@ export async function readStore(): Promise<AppData> {
   await ensureStore();
   const raw = await fs.readFile(dataFile, "utf-8");
   const parsed = JSON.parse(raw) as Partial<AppData>;
-  const { data: normalized, clientsChanged } = normalizeStore(parsed);
+  const { data: normalized, clientsChanged, projectsChanged } =
+    normalizeStore(parsed);
 
   if (
     !parsed.greeting ||
     !parsed.team ||
     !parsed.clients ||
+    !parsed.gallery ||
     !isNewProjectSchema(parsed.projects) ||
-    clientsChanged
+    clientsChanged ||
+    projectsChanged
   ) {
     await writeStore(normalized);
   }

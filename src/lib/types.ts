@@ -62,6 +62,15 @@ export type ClientCompany = {
   published: boolean;
 };
 
+export type GalleryItem = {
+  id: string;
+  title: string;
+  description: string;
+  imageUrl: string;
+  order: number;
+  published: boolean;
+};
+
 export type SiteContent = {
   company: {
     name: string;
@@ -98,6 +107,7 @@ export type AppData = {
   greeting: GreetingContent;
   team: TeamMember[];
   clients: ClientCompany[];
+  gallery: GalleryItem[];
   news: NewsItem[];
   projects: ProjectItem[];
   inquiries: InquiryItem[];

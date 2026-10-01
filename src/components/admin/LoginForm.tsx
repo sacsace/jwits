@@ -52,7 +52,13 @@ export function LoginForm() {
       </div>
       <label className="block text-sm">
         <span className="mb-1.5 block text-muted">아이디</span>
-        <input name="username" required className="admin-input" autoComplete="username" />
+        <input
+          name="username"
+          required
+          className="admin-input"
+          autoComplete="username"
+          suppressHydrationWarning
+        />
       </label>
       <label className="block text-sm">
         <span className="mb-1.5 block text-muted">비밀번호</span>
@@ -63,6 +69,7 @@ export function LoginForm() {
             required
             className="admin-input pr-16"
             autoComplete="current-password"
+            suppressHydrationWarning
           />
           <button
             type="button"

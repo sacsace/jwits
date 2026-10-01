@@ -32,6 +32,12 @@ export function SiteFooter({
             <Link href={`${base}/projects`} className="hover:text-brand">
               {dict.nav.projects}
             </Link>
+            <Link href={`${base}/clients`} className="hover:text-brand">
+              {dict.nav.clients}
+            </Link>
+            <Link href={`${base}/gallery`} className="hover:text-brand">
+              {dict.nav.gallery}
+            </Link>
             <Link href={`${base}/contact`} className="hover:text-brand">
               {dict.nav.contact}
             </Link>
@@ -45,8 +51,25 @@ export function SiteFooter({
           <p className="mb-3 text-sm font-semibold text-ink">
             {dict.footer.contact}
           </p>
-          <div className="space-y-2 text-sm leading-6 text-muted">
-            <p>{dict.company.address}</p>
+          <div className="space-y-4 text-sm leading-6 text-muted">
+            <p>
+              <span className="mb-1 block font-medium text-ink">
+                {dict.contactPage.registrationOffice}
+              </span>
+              {dict.company.address}
+            </p>
+            <p>
+              <span className="mb-1 block font-medium text-ink">
+                {dict.contactPage.apFactoryOffice}
+              </span>
+              {dict.company.apAddress}
+            </p>
+            <p>
+              <span className="mb-1 block font-medium text-ink">
+                {dict.contactPage.koreaOffice}
+              </span>
+              {dict.company.koreaAddress}
+            </p>
             <a
               href={`mailto:${dict.company.email}`}
               className="block hover:text-brand"

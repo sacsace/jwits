@@ -39,6 +39,8 @@ export function SiteHeader({
     { href: `${base}/about`, label: dict.nav.about },
     { href: `${base}/services`, label: dict.nav.services },
     { href: `${base}/projects`, label: dict.nav.projects },
+    { href: `${base}/clients`, label: dict.nav.clients },
+    { href: `${base}/gallery`, label: dict.nav.gallery },
     { href: `${base}/news`, label: dict.nav.news },
     { href: `${base}/contact`, label: dict.nav.contact },
   ];

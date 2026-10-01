@@ -60,7 +60,7 @@ export default function AdminClientsPage() {
     <AdminShell>
       <h1 className="font-display text-xl font-bold text-ink">주요 고객사</h1>
       <p className="mt-1 text-[13px] text-muted">
-        홈·회사소개에 노출되는 주요 고객사를 관리합니다. 회사명은 첫 글자 대문자로
+        홈·고객사 디렉터리에 로고 카드로 노출됩니다. 회사명은 첫 글자 대문자로
         자동 정리됩니다.
       </p>
 

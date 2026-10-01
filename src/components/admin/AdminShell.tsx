@@ -12,6 +12,7 @@ const nav = [
   { href: "/admin/clients", label: "주요 고객사" },
   { href: "/admin/news", label: "뉴스" },
   { href: "/admin/projects", label: "실적" },
+  { href: "/admin/gallery", label: "갤러리" },
   { href: "/admin/inquiries", label: "문의" },
   { href: "/admin/settings", label: "계정 설정" },
 ];

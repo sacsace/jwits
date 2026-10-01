@@ -33,6 +33,12 @@ export default async function AdminDashboardPage() {
       hint: "프로젝트 포트폴리오",
     },
     {
+      label: "갤러리",
+      value: data.gallery.length,
+      href: "/admin/gallery",
+      hint: "사진 관리",
+    },
+    {
       label: "새 문의",
       value: newInquiries,
       href: "/admin/inquiries",
