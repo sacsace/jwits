@@ -67,14 +67,14 @@ export default function AdminProjectsPage() {
 
   return (
     <AdminShell>
-      <h1 className="font-display text-xl font-bold text-ink">실적 관리</h1>
+      <h1 className="font-display text-xl font-bold text-ink">프로젝트 관리</h1>
       <p className="mt-1 text-[13px] text-muted">
-        프로젝트 실적 테이블을 등록·수정합니다.
+        프로젝트 테이블을 등록·수정합니다.
       </p>
 
       <form onSubmit={onSubmit} className="mt-5 space-y-2.5 admin-panel p-4">
         <h2 className="text-[15px] font-semibold text-ink">
-          {editingId ? "실적 수정" : "실적 등록"}
+          {editingId ? "프로젝트 수정" : "프로젝트 등록"}
         </h2>
         <div className="grid gap-2.5 md:grid-cols-4">
           <input

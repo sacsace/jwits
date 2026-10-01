@@ -27,7 +27,7 @@ export default async function AdminDashboardPage() {
       hint: "주요 고객사",
     },
     {
-      label: "실적",
+      label: "프로젝트",
       value: data.projects.length,
       href: "/admin/projects",
       hint: "프로젝트 포트폴리오",

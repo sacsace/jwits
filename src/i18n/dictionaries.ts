@@ -149,7 +149,7 @@ const ko: Dictionary = {
   nav: {
     about: "회사소개",
     services: "사업영역",
-    projects: "실적",
+    projects: "프로젝트",
     clients: "고객사",
     gallery: "갤러리",
     news: "뉴스",
@@ -173,9 +173,9 @@ const ko: Dictionary = {
     servicesDesc:
       "산업용 소모품, 기계 엔지니어링, 제작·제조 영역에서 실무형 지원을 제공합니다.",
     viewAll: "전체 보기",
-    projectsTitle: "주요 실적",
+    projectsTitle: "주요 프로젝트",
     projectsDesc: "기아자동차를 중심으로 수행한 최근 프로젝트입니다.",
-    moreProjects: "실적 더 보기",
+    moreProjects: "프로젝트 더 보기",
     newsTitle: "최근 소식",
     ctaTitle: "과제를 함께 검토해 드립니다",
     ctaDesc: "설계, 해석, 시험, 공정 — 필요한 범위부터 상담할 수 있습니다.",
@@ -213,7 +213,7 @@ const ko: Dictionary = {
       "Project Director JW Lee 지휘 아래 산업용 소모품·기계 엔지니어링·제작 제조 영역을 통합 지원합니다.",
   },
   projectsPage: {
-    title: "수행 실적",
+    title: "프로젝트",
     description:
       "기아자동차를 주요 고객으로, 설계·해석·시험·공정 과제를 수행해 왔습니다.",
     portfolioTitle: "프로젝트 포트폴리오",
@@ -803,7 +803,7 @@ const zh: Dictionary = {
   nav: {
     about: "公司介绍",
     services: "业务领域",
-    projects: "业绩",
+    projects: "项目",
     clients: "客户",
     gallery: "图库",
     news: "新闻",
@@ -825,9 +825,9 @@ const zh: Dictionary = {
     servicesTitle: "业务领域",
     servicesDesc: "覆盖工业耗材、机械工程与制作制造的实务支持。",
     viewAll: "查看全部",
-    projectsTitle: "主要业绩",
+    projectsTitle: "主要项目",
     projectsDesc: "以起亚汽车为中心开展的近期项目。",
-    moreProjects: "更多业绩",
+    moreProjects: "更多项目",
     newsTitle: "最新动态",
     ctaTitle: "一起梳理您的课题",
     ctaDesc: "设计、解析、试验、工艺——可从所需范围开始咨询。",
@@ -863,7 +863,7 @@ const zh: Dictionary = {
       "在 Project Director JW Lee 指导下，统筹工业耗材、机械工程与制作制造业务。",
   },
   projectsPage: {
-    title: "项目业绩",
+    title: "项目",
     description: "以起亚汽车为主要客户，完成设计、解析、试验与工艺相关项目。",
     portfolioTitle: "项目组合",
     searchPlaceholder: "搜索年份、客户、项目名称",
@@ -1107,7 +1107,7 @@ const ja: Dictionary = {
   nav: {
     about: "会社紹介",
     services: "事業領域",
-    projects: "実績",
+    projects: "プロジェクト",
     clients: "取引先",
     gallery: "ギャラリー",
     news: "ニュース",
@@ -1131,9 +1131,9 @@ const ja: Dictionary = {
     servicesDesc:
       "産業用消耗品、機械エンジニアリング、製作・製造領域で実務支援を提供します。",
     viewAll: "すべて見る",
-    projectsTitle: "主な実績",
+    projectsTitle: "主なプロジェクト",
     projectsDesc: "起亜自動車を中心に実施した最近のプロジェクトです。",
-    moreProjects: "実績をもっと見る",
+    moreProjects: "プロジェクトをもっと見る",
     newsTitle: "最新ニュース",
     ctaTitle: "課題を一緒に検討します",
     ctaDesc: "設計、解析、試験、工程 — 必要な範囲からご相談いただけます。",
@@ -1171,7 +1171,7 @@ const ja: Dictionary = {
       "Project Director JW Lee の下で、消耗品・機械エンジニアリング・製作製造を一体支援します。",
   },
   projectsPage: {
-    title: "実績",
+    title: "プロジェクト",
     description: "起亜自動車を主要顧客として、設計・解析・試験・工程の課題に対応してきました。",
     portfolioTitle: "プロジェクトポートフォリオ",
     searchPlaceholder: "年・顧客・プロジェクト名で検索",
