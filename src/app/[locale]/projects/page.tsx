@@ -49,11 +49,7 @@ export default async function ProjectsPage({
           projects={projects}
           searchPlaceholder={dict.projectsPage.searchPlaceholder}
           emptyLabel={dict.projectsPage.emptyLabel}
-          resultLabel={(filtered, total) =>
-            dict.projectsPage.resultLabel
-              .replace("{filtered}", String(filtered))
-              .replace("{total}", String(total))
-          }
+          resultLabelTemplate={dict.projectsPage.resultLabel}
         />
       </section>
     </div>

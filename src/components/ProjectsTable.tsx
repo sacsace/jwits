@@ -7,7 +7,7 @@ type Props = {
   projects: ProjectItem[];
   searchPlaceholder: string;
   emptyLabel: string;
-  resultLabel: (filtered: number, total: number) => string;
+  resultLabelTemplate: string;
 };
 
 function matches(project: ProjectItem, query: string) {
@@ -33,7 +33,7 @@ export function ProjectsTable({
   projects,
   searchPlaceholder,
   emptyLabel,
-  resultLabel,
+  resultLabelTemplate,
 }: Props) {
   const [query, setQuery] = useState("");
 
@@ -41,6 +41,10 @@ export function ProjectsTable({
     () => projects.filter((p) => matches(p, query)),
     [projects, query]
   );
+
+  const resultLabel = resultLabelTemplate
+    .replace("{filtered}", String(filtered.length))
+    .replace("{total}", String(projects.length));
 
   return (
     <div>
@@ -54,7 +58,7 @@ export function ProjectsTable({
           aria-label={searchPlaceholder}
         />
         <p className="text-[12px] text-muted">
-          {resultLabel(filtered.length, projects.length)}
+          {resultLabel}
         </p>
       </div>
 
