@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { PageHero, SectionHeading } from "@/components/ui";
+import { PageHero } from "@/components/ui";
 import { GalleryGrid } from "@/components/GalleryGrid";
 import { getDictionary } from "@/i18n/dictionaries";
 import { isLocale, type Locale } from "@/i18n/config";
@@ -38,8 +38,13 @@ export default async function GalleryPage({
         description={dict.galleryPage.description}
       />
       <section className="mx-auto max-w-6xl px-5 py-14">
-        <SectionHeading title={dict.galleryPage.gridTitle} />
-        <GalleryGrid items={items} emptyLabel={dict.galleryPage.emptyLabel} />
+        <GalleryGrid
+          items={items}
+          emptyLabel={dict.galleryPage.emptyLabel}
+          gridTitle={dict.galleryPage.gridTitle}
+          cardViewLabel={dict.galleryPage.cardView}
+          listViewLabel={dict.galleryPage.listView}
+        />
       </section>
     </div>
   );

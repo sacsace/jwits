@@ -64,24 +64,35 @@ export function SiteHeader({
           />
 
           <div className="hidden items-center gap-8 md:flex">
-            <nav className="flex items-center gap-7">
+            <nav className="flex items-center gap-6" aria-label="Primary">
               {links.map((link) => {
-                const active = pathname.startsWith(link.href);
+                const active = pathname === link.href || pathname.startsWith(`${link.href}/`);
                 return (
                   <Link
                     key={link.href}
                     href={link.href}
-                    className={`text-[14px] transition ${
+                    aria-current={active ? "page" : undefined}
+                    className={`relative pb-1 text-[13px] tracking-tight transition ${
                       solid
                         ? active
                           ? "font-semibold text-brand"
-                          : "text-ink-soft hover:text-brand"
+                          : "font-medium text-ink-soft hover:text-brand"
                         : active
                           ? "font-semibold text-white"
-                          : "text-white/85 hover:text-white"
+                          : "font-medium text-white/80 hover:text-white"
                     }`}
                   >
                     {link.label}
+                    <span
+                      aria-hidden
+                      className={`absolute inset-x-0 -bottom-0.5 h-[2px] rounded-full transition ${
+                        active
+                          ? solid
+                            ? "bg-brand"
+                            : "bg-white"
+                          : "bg-transparent"
+                      }`}
+                    />
                   </Link>
                 );
               })}
@@ -103,17 +114,26 @@ export function SiteHeader({
 
         {open && (
           <div className="border-t border-line bg-surface px-5 py-4 md:hidden">
-            <div className="flex flex-col gap-3">
-              {links.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setOpen(false)}
-                  className="text-[15px] text-ink"
-                >
-                  {link.label}
-                </Link>
-              ))}
+            <div className="flex flex-col gap-1">
+              {links.map((link) => {
+                const active =
+                  pathname === link.href || pathname.startsWith(`${link.href}/`);
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setOpen(false)}
+                    aria-current={active ? "page" : undefined}
+                    className={`rounded-md px-2 py-2 text-[14px] transition ${
+                      active
+                        ? "bg-brand/8 font-semibold text-brand"
+                        : "font-medium text-ink hover:bg-mist"
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                );
+              })}
               <div className="pt-2">
                 <LanguageSwitcher locale={locale} />
               </div>

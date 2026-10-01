@@ -158,6 +158,7 @@ export function ProjectsTable({
           placeholder={searchPlaceholder}
           className="w-full border border-line bg-white px-3 py-2 text-[13px] text-ink outline-none placeholder:text-muted focus:border-brand sm:max-w-md"
           aria-label={searchPlaceholder}
+          suppressHydrationWarning
         />
         <p className="text-[12px] text-muted">{resultLabel}</p>
       </div>

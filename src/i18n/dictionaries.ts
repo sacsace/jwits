@@ -74,6 +74,8 @@ export type Dictionary = {
     description: string;
     gridTitle: string;
     emptyLabel: string;
+    cardView: string;
+    listView: string;
   };
   clientsPage: {
     title: string;
@@ -226,6 +228,8 @@ const ko: Dictionary = {
     description: "현장과 프로젝트 활동을 사진으로 소개합니다.",
     gridTitle: "사진 갤러리",
     emptyLabel: "등록된 사진이 없습니다.",
+    cardView: "카드로 보기",
+    listView: "리스트로 보기",
   },
   clientsPage: {
     title: "고객사",
@@ -553,6 +557,8 @@ const en: Dictionary = {
     description: "Photos from our field work and project activities.",
     gridTitle: "Photo gallery",
     emptyLabel: "No photos have been published yet.",
+    cardView: "Card view",
+    listView: "List view",
   },
   clientsPage: {
     title: "Clients",
@@ -875,6 +881,8 @@ const zh: Dictionary = {
     description: "展示现场与项目活动照片。",
     gridTitle: "照片图库",
     emptyLabel: "暂无已发布照片。",
+    cardView: "卡片视图",
+    listView: "列表视图",
   },
   clientsPage: {
     title: "客户",
@@ -1183,6 +1191,8 @@ const ja: Dictionary = {
     description: "現場とプロジェクト活動の写真をご紹介します。",
     gridTitle: "フォトギャラリー",
     emptyLabel: "公開中の写真はまだありません。",
+    cardView: "カード表示",
+    listView: "リスト表示",
   },
   clientsPage: {
     title: "取引先",
