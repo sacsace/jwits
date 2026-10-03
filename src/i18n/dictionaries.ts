@@ -288,7 +288,7 @@ const ko: Dictionary = {
       "18611 경기도 화성시 향남읍 2774번길 61 모아엘가 803동 1004호",
     koreaBizInfo: "사업자등록번호 279-35-01121 (전자세금용: woojinindia@outlook.com)",
     phone: "031-8015-9200",
-    email: "lee@jwits.co.kr",
+    email: "lee@jwits.in",
     fax: "031-8015-9201",
     keyClient: "기아자동차",
   },
@@ -618,7 +618,7 @@ const en: Dictionary = {
     koreaBizInfo:
       "Korea legal entity (sole proprietorship) · Business Reg. No. 279-35-01121 (e-tax: woojinindia@outlook.com)",
     phone: "031-8015-9200",
-    email: "lee@jwits.co.kr",
+    email: "lee@jwits.in",
     fax: "031-8015-9201",
     keyClient: "Kia Motors",
   },
@@ -939,7 +939,7 @@ const zh: Dictionary = {
     koreaBizInfo:
       "韩国法人（个人事业者）· 事业者登记号 279-35-01121（电子税务: woojinindia@outlook.com）",
     phone: "031-8015-9200",
-    email: "lee@jwits.co.kr",
+    email: "lee@jwits.in",
     fax: "031-8015-9201",
     keyClient: "起亚汽车",
   },
@@ -1251,7 +1251,7 @@ const ja: Dictionary = {
     koreaBizInfo:
       "韓国法人（個人事業）· 事業者登録番号 279-35-01121（電子税務: woojinindia@outlook.com）",
     phone: "031-8015-9200",
-    email: "lee@jwits.co.kr",
+    email: "lee@jwits.in",
     fax: "031-8015-9201",
     keyClient: "起亜自動車",
   },

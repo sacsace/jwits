@@ -69,6 +69,7 @@ function normalizeStore(raw: Partial<AppData>): {
   data: AppData;
   clientsChanged: boolean;
   projectsChanged: boolean;
+  companyChanged: boolean;
 } {
   const baseProjects = isNewProjectSchema(raw.projects)
     ? raw.projects
@@ -79,19 +80,25 @@ function normalizeStore(raw: Partial<AppData>): {
   );
   const { projects, changed: projectsChanged } = normalizeProjects(baseProjects);
 
+  const storedEmail = raw.content?.company?.email;
+  const companyChanged = storedEmail === "lee@jwits.co.kr";
+  const company = {
+    ...defaultData.content.company,
+    ...(raw.content?.company ?? {}),
+    ...(companyChanged ? { email: "lee@jwits.in" } : {}),
+  };
+
   return {
     clientsChanged,
     projectsChanged,
+    companyChanged,
     data: {
       ...defaultData,
       ...raw,
       content: {
         ...defaultData.content,
         ...(raw.content ?? {}),
-        company: {
-          ...defaultData.content.company,
-          ...(raw.content?.company ?? {}),
-        },
+        company,
         hero: {
           ...defaultData.content.hero,
           ...(raw.content?.hero ?? {}),
@@ -129,7 +136,7 @@ export async function readStore(): Promise<AppData> {
   await ensureStore();
   const raw = await fs.readFile(dataFile, "utf-8");
   const parsed = JSON.parse(raw) as Partial<AppData>;
-  const { data: normalized, clientsChanged, projectsChanged } =
+  const { data: normalized, clientsChanged, projectsChanged, companyChanged } =
     normalizeStore(parsed);
 
   if (
@@ -139,7 +146,8 @@ export async function readStore(): Promise<AppData> {
     !parsed.gallery ||
     !isNewProjectSchema(parsed.projects) ||
     clientsChanged ||
-    projectsChanged
+    projectsChanged ||
+    companyChanged
   ) {
     await writeStore(normalized);
   }

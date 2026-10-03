@@ -13,7 +13,7 @@ export const defaultData: AppData = {
       address:
         "24/1, 1st Floor Makers Hotel Biz 120 Doddanekundi, Marathalli Ferns City Road, Bengaluru, Bangalore KA 560037",
       phone: "031-8015-9200",
-      email: "lee@jwits.co.kr",
+      email: "lee@jwits.in",
       fax: "031-8015-9201",
     },
     hero: {
